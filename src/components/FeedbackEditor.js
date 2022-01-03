@@ -17,6 +17,8 @@ export default function FeedbackEditor() {
 				<button className="btn-rate">8</button>
 				<button className="btn-rate">9</button>
 			</div>
+
+			<Input/>
 		</div>
 	);
 }
