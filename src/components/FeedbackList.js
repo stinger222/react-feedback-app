@@ -16,7 +16,7 @@ export default function FeedbackList({feedbackData}) {
 	return (
 		<div className="feedback-list-wrapper">
 			<div className="stats">
-				<span>0 Reviews</span>
+				<span>{feedbackData.length} {feedbackData.length == 1 ? 'Review' : 'Reviews'}</span>
 				<span>Average rating: {averageRating}</span>
 			</div>
 			<div className="feedback-list">
