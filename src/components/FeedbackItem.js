@@ -1,11 +1,25 @@
-export default function FeedbackItem() {
+import { useEffect } from 'react';
+
+export default function FeedbackItem({rating, description, setAverageRating}) {
+
+	const averageComputer = (values = []) => (nextValue) => {
+		values.push(nextValue)
+		return (values.reduce((prev, current) => prev + current) / values.length).toFixed(1)
+	}
+	
+	const getAverage = averageComputer()
+
+	useEffect(() => {
+		setAverageRating(rating)
+	}, [])
+
 	return (
 		<div className="feedback-item">
 			<span className="feedback-item-rating">
-				7
+				{rating}
 			</span>
 			<span className="review-text">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores laboriosam voluptates at commodi. Consectetur.
+				{description}
 			</span>
 		</div>
 	)
