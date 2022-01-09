@@ -12,7 +12,7 @@ export default function FeedbackList({feedbackData}) {
 	useEffect(() => {
 		setAverageRating(computeAverageRating())
 	})
-
+	console.log(feedbackData)
 	return (
 		<div className="feedback-list-wrapper">
 			<div className="stats">
@@ -20,6 +20,8 @@ export default function FeedbackList({feedbackData}) {
 				<span>Average rating: {averageRating}</span>
 			</div>
 			<div className="feedback-list">
+				{feedbackData.length == 0 && <h2 className="no_feedback">There is no feedback yet.</h2>}
+
 				{feedbackData && feedbackData.map(item => (
 					<FeedbackItem 
 						rating={item.rating}

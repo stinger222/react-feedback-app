@@ -42,6 +42,18 @@
 
 body {
 	background-color: #1d1d38;
+
+	h2 {
+		color: white;
+		font-weight: bold;
+		font-size: 2em;
+	}
+
+	h2.no_feedback {
+		text-align: center;
+		color:#ff6bc4;
+		margin-top: 30px;
+	}
 }
 
 .content {
