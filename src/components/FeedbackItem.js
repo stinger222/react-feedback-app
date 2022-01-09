@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react';
+import { FaTimes } from 'react-icons/fa'
 
-export default function FeedbackItem({rating, description, }) {
-
-
+export default function FeedbackItem({item, handleDelete}) {
 
 	return (
 		<div className="feedback-item">
 			<span className="feedback-item-rating">
-				{rating}
+				{item.rating}
 			</span>
+			<button onClick={() => handleDelete(item.id)} className='close'>
+				<FaTimes color='purple'/>
+			</button>
 			<span className="review-text">
-				{description}
+				{item.description}
 			</span>
 		</div>
 	)

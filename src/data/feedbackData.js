@@ -6,7 +6,7 @@ let feedbackData = [
 	},
 	{
 		id: 1,
-		rating: 1,
+		rating: 9,
 		description: "Excepteur quis dolore eiusmod do aliqua ullamco non Lorem laborum laboris id adipisicing non. Ullamco cupidatat pariatur officia eu elit deserunt tempor mollit duis proident enim. Nisi nisi aute sint adipisicing ea."
 	},
 	{

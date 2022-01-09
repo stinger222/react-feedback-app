@@ -43,13 +43,9 @@
 body {
 	background-color: #1d1d38;
 
-	h2 {
-		color: white;
+	h2.no_feedback {
 		font-weight: bold;
 		font-size: 2em;
-	}
-
-	h2.no_feedback {
 		text-align: center;
 		color:#ff6bc4;
 		margin-top: 30px;
@@ -98,7 +94,7 @@ body {
 		text-align: center;
 
 		h2 {
-			font-size: clamp(1em, 1.6vw, 1.9em);
+			font-size: clamp(1.2em, 3vw, 2.3em);
 		}
 
 		.rate {
@@ -185,10 +181,6 @@ body {
 			font-weight: 500;
 			font-size: 1.2em;
 
-			.review-text {
-				font-size: clamp(0.8em, 1.4vw, 1.2em);
-			}
-
 			.feedback-item-rating {
 				position: absolute;
 				top: -15px;
@@ -204,6 +196,25 @@ body {
 				line-height: 50px;
 				font-size: 1.2em;
 				font-weight: 400;
+			}
+
+			.close {
+				position: absolute;
+				right: 1.2em;
+				top: 1.2em;
+				outline: none;
+				border: none;
+				background: white;
+				cursor: pointer;
+
+				svg {
+					height: 1.4em;
+					width: 1.4em;
+				}
+			}
+
+			.review-text {
+				font-size: clamp(0.8em, 1.4vw, 1.2em);
 			}
 		}
 	}

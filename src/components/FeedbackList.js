@@ -1,19 +1,22 @@
 import { useEffect, useState } from "react";
 import FeedbackItem from "./FeedbackItem";
 
-export default function FeedbackList({feedbackData}) {
+export default function FeedbackList({feedbackData, handleDelete}) {
 
+
+	const noFeedback = !feedbackData || feedbackData.length == 0
 	const [averageRating, setAverageRating] = useState(0)
 
 	const computeAverageRating = () => {
-		if (feedbackData.length == 0) return 0
+		if (noFeedback) return 0
+
 		return (feedbackData.reduce((accum, current) => accum + current.rating, 0) / feedbackData.length).toFixed(1)
 	}
 
 	useEffect(() => {
 		setAverageRating(computeAverageRating())
 	})
-	console.log(feedbackData)
+	
 	return (
 		<div className="feedback-list-wrapper">
 			<div className="stats">
@@ -21,16 +24,15 @@ export default function FeedbackList({feedbackData}) {
 				<span>Average rating: {averageRating || 0}</span>
 			</div>
 			<div className="feedback-list">
-				{feedbackData.length == 0 && <h2 className="no_feedback">There is no feedback yet.</h2>}
+				{noFeedback && <h2 className="no_feedback">There is no feedback yet.</h2>}
 
-				{feedbackData && feedbackData.map(item => (
-					<FeedbackItem 
-						rating={item.rating}
-						description={item.description}
+				{!noFeedback && feedbackData.map(item => (
+					<FeedbackItem
+						handleDelete={handleDelete}
+						item={item}
 						key={item.id}
 					/>
 				))}
-
 			</div>
 		</div>
 	)
