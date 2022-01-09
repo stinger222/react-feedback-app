@@ -6,6 +6,7 @@ export default function FeedbackList({feedbackData}) {
 	const [averageRating, setAverageRating] = useState(0)
 
 	const computeAverageRating = () => {
+		if (feedbackData.length == 0) return 0
 		return (feedbackData.reduce((accum, current) => accum + current.rating, 0) / feedbackData.length).toFixed(1)
 	}
 
@@ -17,7 +18,7 @@ export default function FeedbackList({feedbackData}) {
 		<div className="feedback-list-wrapper">
 			<div className="stats">
 				<span>{feedbackData.length} {feedbackData.length == 1 ? 'Review' : 'Reviews'}</span>
-				<span>Average rating: {averageRating}</span>
+				<span>Average rating: {averageRating || 0}</span>
 			</div>
 			<div className="feedback-list">
 				{feedbackData.length == 0 && <h2 className="no_feedback">There is no feedback yet.</h2>}
