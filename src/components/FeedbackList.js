@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import FeedbackItem from "./FeedbackItem";
+import { useEffect, useState } from "react"
+import FeedbackItem from "./FeedbackItem"
 import PropTypes from 'prop-types'
 
 export default function FeedbackList({feedbackData, handleDelete}) {

@@ -1,18 +1,15 @@
-import { useEffect, useState } from "react";
-import "../index.scss";
-import Button from "./Button";
+import { useEffect, useState } from "react"
+import "../index.scss"
+import Button from "./Button"
 
-
-//@todo: remove semicolons
 export default function FeedbackForm({ handleAppend }) {
-	const [feedbackRating, setFeedbackRating] = useState(null);
-	const [feedbackDesc, setFeedbackDesc] = useState('');
-	const [submitDisabled, setSubmitDisabled] = useState(true);
-	const [errorMessage, setErrorMessage] = useState(null);	// Review have to contain at least 10 characters!
+	const [feedbackRating, setFeedbackRating] = useState(null)
+	const [feedbackDesc, setFeedbackDesc] = useState('')
+	const [submitDisabled, setSubmitDisabled] = useState(true)
+	const [errorMessage, setErrorMessage] = useState(null)
 
 	const handleRating = (event) => {
-		console.log(1);
-		setFeedbackRating(parseInt(event.target.innerText));
+		setFeedbackRating(parseInt(event.target.innerText))
 	}
 
 	const handleInput = (event) => {
@@ -122,6 +119,6 @@ export default function FeedbackForm({ handleAppend }) {
 		}
 
 		</form>
-	);
+	)
 }
 
