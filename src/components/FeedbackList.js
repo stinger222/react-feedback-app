@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import FeedbackItem from "./FeedbackItem";
+import PropTypes from 'prop-types'
 
 export default function FeedbackList({feedbackData, handleDelete}) {
 
@@ -7,14 +8,14 @@ export default function FeedbackList({feedbackData, handleDelete}) {
 	const noFeedback = !feedbackData || feedbackData.length == 0
 	const [averageRating, setAverageRating] = useState(0)
 
-	const computeAverageRating = () => {
+	const calculateAverageRating = () => {
 		if (noFeedback) return 0
-
-		return (feedbackData.reduce((accum, current) => accum + current.rating, 0) / feedbackData.length).toFixed(1)
+		let average = (feedbackData.reduce((acc, cur) => acc + cur.rating, 0) / feedbackData.length)
+		return average.toFixed(1).replace(/[.,]0$/, '')
 	}
 
 	useEffect(() => {
-		setAverageRating(computeAverageRating())
+		setAverageRating(calculateAverageRating())
 	})
 	
 	return (
@@ -36,4 +37,9 @@ export default function FeedbackList({feedbackData, handleDelete}) {
 			</div>
 		</div>
 	)
+}
+
+FeedbackList.PropTypes = {
+	feedbackData: PropTypes.array.isRequired,
+	handleDelete: PropTypes.func.isRequired
 }
