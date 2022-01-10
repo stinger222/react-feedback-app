@@ -2,22 +2,35 @@ import { useEffect, useState } from "react";
 import "../index.scss";
 import Button from "./Button";
 
+
+//@todo: remove semicolons
 export default function FeedbackForm({ handleAppend }) {
 	const [feedbackRating, setFeedbackRating] = useState(null);
 	const [feedbackDesc, setFeedbackDesc] = useState('');
+	const [submitDisabled, setSubmitDisabled] = useState(true);
+	const [errorMessage, setErrorMessage] = useState(null);	// Review have to contain at least 10 characters!
 
 	const handleRating = (event) => {
+		console.log(1);
 		setFeedbackRating(parseInt(event.target.innerText));
-	};
-
-	const handleInput = (event) => {
-		setFeedbackDesc(event.target.value)
 	}
 
-	useEffect(() => {
-		console.log("rating: ", feedbackRating);
-		console.log("desc: ", feedbackDesc);
-	});
+	const handleInput = (event) => {
+		let value = event.target.value.trim()
+
+		if (value.length == 0) {
+			setSubmitDisabled(true)
+			setErrorMessage(null)
+		} else if ( value !== '' &&value.length < 10) {
+			setSubmitDisabled(true)
+			setErrorMessage('Review must be at least 10 characters!')
+		} else {
+			setSubmitDisabled(false)
+			setErrorMessage(null)
+		}
+
+		setFeedbackDesc(event.target.value)
+	}
 
 	return (
 		<form className="feedback-form">
@@ -89,9 +102,7 @@ export default function FeedbackForm({ handleAppend }) {
 				</button>
 			</div>
 
-			<Button>
-				CLIIICKC ME
-			</Button>
+			{/* <Button onClick={() => {console.log(1)}}>ACTIVE</Button> */}
 
 			<div className="input-wrapper">
 			<input
@@ -99,11 +110,16 @@ export default function FeedbackForm({ handleAppend }) {
 			 placeholder={'Write a review'}
 			 value={feedbackDesc}
 			/>
-			
-			<button className="btn btn-submit" type="submit">
+
+			<Button className="btn-submit" isDisabled={submitDisabled} type="submit">
 				Send
-			</button>
+			</Button>
 		</div>
+
+		{errorMessage && <div className="message-wrapper">
+				{errorMessage}
+			</div>
+		}
 
 		</form>
 	);
