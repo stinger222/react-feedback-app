@@ -39,7 +39,7 @@ export default function FeedbackList({feedbackData, handleDelete}) {
 	)
 }
 
-FeedbackList.PropTypes = {
+FeedbackList.propTypes = {
 	feedbackData: PropTypes.array.isRequired,
 	handleDelete: PropTypes.func.isRequired
 }
