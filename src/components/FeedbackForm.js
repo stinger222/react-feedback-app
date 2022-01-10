@@ -18,7 +18,7 @@ export default function FeedbackForm({ handleAppend }) {
 	const handleInput = (event) => {
 		let value = event.target.value.trim()
 
-		if (value.length == 0) {
+		if (value.length === 0) {
 			setSubmitDisabled(true)
 			setErrorMessage(null)
 		} else if ( value !== '' &&value.length < 10) {
@@ -37,69 +37,69 @@ export default function FeedbackForm({ handleAppend }) {
 			<h2>How would you rate your service with us?</h2>
 
 			<div className="rate">
-				<button
+				<Button
 					type="button"
 					onClick={handleRating}
-					className={`btn btn-rate${feedbackRating == 1 ? " selected" : ""}`}
+					className={`btn btn-rate${feedbackRating === 1 ? " selected" : ""}`}
 				>
 					1
-				</button>
-				<button
+				</Button>
+				<Button
 					type="button"
 					onClick={handleRating}
-					className={`btn btn-rate${feedbackRating == 2 ? " selected" : ""}`}
+					className={`btn btn-rate${feedbackRating === 2 ? " selected" : ""}`}
 				>
 					2
-				</button>
-				<button
+				</Button>
+				<Button
 					type="button"
 					onClick={handleRating}
-					className={`btn btn-rate${feedbackRating == 3 ? " selected" : ""}`}
+					className={`btn btn-rate${feedbackRating === 3 ? " selected" : ""}`}
 				>
 					3
-				</button>
-				<button
+				</Button>
+				<Button
 					type="button"
 					onClick={handleRating}
-					className={`btn btn-rate${feedbackRating == 4 ? " selected" : ""}`}
+					className={`btn btn-rate${feedbackRating === 4 ? " selected" : ""}`}
 				>
 					4
-				</button>
-				<button
+				</Button>
+				<Button
 					type="button"
 					onClick={handleRating}
-					className={`btn btn-rate${feedbackRating == 5 ? " selected" : ""}`}
+					className={`btn btn-rate${feedbackRating === 5 ? " selected" : ""}`}
 				>
 					5
-				</button>
-				<button
+				</Button>
+				<Button
 					type="button"
 					onClick={handleRating}
-					className={`btn btn-rate${feedbackRating == 6 ? " selected" : ""}`}
+					className={`btn btn-rate${feedbackRating === 6 ? " selected" : ""}`}
 				>
 					6
-				</button>
-				<button
+				</Button>
+				<Button
 					type="button"
 					onClick={handleRating}
-					className={`btn btn-rate${feedbackRating == 7 ? " selected" : ""}`}
+					className={`btn btn-rate${feedbackRating === 7 ? " selected" : ""}`}
 				>
 					7
-				</button>
-				<button
+				</Button>
+				<Button
 					type="button"
 					onClick={handleRating}
-					className={`btn btn-rate${feedbackRating == 8 ? " selected" : ""}`}
+					className={`btn btn-rate${feedbackRating === 8 ? " selected" : ""}`}
 				>
 					8
-				</button>
-				<button
+				</Button>
+				<Button
 					type="button"
 					onClick={handleRating}
-					className={`btn btn-rate${feedbackRating == 9 ? " selected" : ""}`}
+					className={`btn btn-rate${feedbackRating === 9 ? " selected" : ""}`}
 				>
 					9
-				</button>
+				</Button>
 			</div>
 
 			{/* <Button onClick={() => {console.log(1)}}>ACTIVE</Button> */}
