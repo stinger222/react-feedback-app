@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import FeedbackEditor from "./components/FeedbackEditor";
+import FeedbackForm from "./components/FeedbackForm";
 import FeedbackList from "./components/FeedbackList";
 import Header from "./components/Header";
 import feedbackData from './data/feedbackData';
@@ -13,10 +13,18 @@ export default function App() {
 		setFeedback(feedback.filter(i => i.id != id))
 	}
 
+	const handleAppend = (rating, description) => {
+		setFeedback([...feedback, {
+			id: feedback.slice(-1).id + 1,
+			rating,
+			description
+		}])
+	}
+
 	return (
 		<div className="content">
 			<Header/>
-			<FeedbackEditor/>
+			<FeedbackForm/>
 			<FeedbackList handleDelete={deleteFeedback} feedbackData={feedback}/>
 		</div>
 	);
