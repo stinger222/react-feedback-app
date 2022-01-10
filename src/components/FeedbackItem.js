@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FaTimes } from 'react-icons/fa'
+import PropTypes from 'prop-types'
+
 
 export default function FeedbackItem({item, handleDelete}) {
 
@@ -17,3 +19,16 @@ export default function FeedbackItem({item, handleDelete}) {
 		</div>
 	)
 }
+
+FeedbackItem.propTypes = {
+	item: PropTypes.shape({
+		rating: PropTypes.oneOfType([
+			PropTypes.number,
+			PropTypes.string
+		]),
+		id: PropTypes.number,
+		description: PropTypes.string
+	})
+}
+
+
