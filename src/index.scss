@@ -21,9 +21,17 @@
 }
 
 .btn:active {
-	// box-shadow: .1em .1em 0 0 rgba(0, 0, 0, 0.356);
 	top: .05em;
-	// border-bottom: none;
+}
+
+.btn-disabled {
+	background: #666 !important;
+	color: rgb(238, 238, 238) !important;
+}
+
+.btn-disabled:hover {
+	filter: none;
+	cursor: default;
 }
 
 @media screen and (max-width: 1100px) {
@@ -125,13 +133,13 @@ body {
 			width: 100%;
 			flex-wrap: wrap;
 			justify-content: center;
-			gap: clamp(0.5em, 1.4vw, 1.8em);
+			gap: clamp(0.5em, 1.9vw, 1.8em);
 
 			.btn-rate {
 				background: rgba(233, 233, 233, 0.781);
 				height: 2.5em;
 				width: 2.5em;
-				font-size: clamp(0.3em, 3vw, 1.3em);
+				font-size: clamp(1em, 2.2vw, 1.5em);
 				border-radius: 50%;
 			}
 
@@ -147,10 +155,9 @@ body {
 			align-items: center;
 			border: 2px solid rgb(224, 224, 224);
 			border-radius: 3px;
-			padding: 15px 3px;
+			padding: 0.9em 0.6em;
 			height: 2em;
 			width: 90%;
-			// flex-wrap: 1;
 
 			input {
 				border: none;
@@ -163,7 +170,8 @@ body {
 			}
 
 			.btn-submit {
-				background: rgb(207, 207, 207);
+				background: rgb(13, 14, 88);
+				color: white;
 				padding: 0.5em 1.2em;
 				font-size: clamp(1em, 1.9vw, 1.3em);
 			}
