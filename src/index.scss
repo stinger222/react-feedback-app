@@ -3,6 +3,29 @@
 	padding: 0;
 }
 
+.btn {
+	background: rgb(231, 231, 231);
+	font-size: clamp(0.3em, 3vw, 1.3em);
+	border-radius: .4em;
+	outline: none;
+	border: none;
+	padding: .5em;
+	transition: all .2s;
+	// transition: top 2s;
+	cursor: pointer;
+	position: relative;
+}
+
+.btn:hover {
+	filter: brightness(.9);
+}
+
+.btn:active {
+	// box-shadow: .1em .1em 0 0 rgba(0, 0, 0, 0.356);
+	top: .05em;
+	// border-bottom: none;
+}
+
 @media screen and (max-width: 1100px) {
 	.content {
 		grid-template-columns: 1fr 80% 1fr !important;
@@ -79,7 +102,7 @@ body {
 		}
 	}
 
-	.feedback-editor {
+	.feedback-form {
 		grid-row: 2 / 3;
 		grid-column: 2 / 3;
 
@@ -110,15 +133,12 @@ body {
 				width: 2.5em;
 				font-size: clamp(0.3em, 3vw, 1.3em);
 				border-radius: 50%;
-				outline: none;
-				border: none;
-				transition: all .2s;
 			}
 
-			.btn-rate:hover {
-				filter: brightness(.9)
+			.selected {
+				background: rgb(255, 99, 190);
+				color: white;
 			}
-
 	}
 
 		.input-wrapper {
@@ -142,18 +162,10 @@ body {
 				font-size: clamp(1em, 3vw, 1.5em);
 			}
 
-			button[type="submit"] {
-				border: none;
-				outline: none;
+			.btn-submit {
 				background: rgb(207, 207, 207);
 				padding: 0.5em 1.2em;
-				border-radius: 10px;
 				font-size: clamp(1em, 1.9vw, 1.3em);
-				cursor: pointer;
-				transition: 0.2s all;
-			}
-			button[type="submit"]:hover {
-				background: rgb(190, 189, 189);
 			}
 		}
 	}
