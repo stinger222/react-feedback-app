@@ -14,17 +14,17 @@ export default function App() {
 	}
 
 	const handleAppend = (rating, description) => {
-		setFeedback([...feedback, {
+		setFeedback([{
 			id: feedback.slice(-1).id + 1,
 			rating,
 			description
-		}])
+		}, ...feedback])
 	}
 
 	return (
 		<div className="content">
 			<Header/>
-			<FeedbackForm/>
+			<FeedbackForm handleAppend={handleAppend}/>
 			<FeedbackList handleDelete={deleteFeedback} feedbackData={feedback}/>
 		</div>
 	)

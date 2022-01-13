@@ -29,6 +29,19 @@ export default function FeedbackForm({ handleAppend }) {
 		setFeedbackDesc(event.target.value)
 	}
 
+	let handleSubmit = (event) => {
+		event.preventDefault()
+		if (!feedbackRating || feedbackDesc.trim() == '') {
+			console.error('Feedback rating is not provided!!')
+			// setErrorMessage('Please, rate our services before sending feedback!')
+			setErrorMessage('Rating required!')
+			return
+		}
+		handleAppend(feedbackRating, feedbackDesc)
+		setFeedbackRating(null)
+		setFeedbackDesc('')
+	}
+
 	return (
 		<form className="feedback-form">
 			<h2>How would you rate your service with us?</h2>
@@ -108,7 +121,7 @@ export default function FeedbackForm({ handleAppend }) {
 			 value={feedbackDesc}
 			/>
 
-			<Button className="btn-submit" isDisabled={submitDisabled} type="submit">
+			<Button className="btn-submit" onClick={handleSubmit} isDisabled={submitDisabled} type="submit">
 				Send
 			</Button>
 		</div>
