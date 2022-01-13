@@ -159,6 +159,7 @@ body {
 			border: 2px solid rgb(224, 224, 224);
 			border-radius: 3px;
 			padding: 0.9em 0.6em;
+			margin-bottom: 20px;
 			height: 2em;
 			width: 90%;
 
@@ -182,12 +183,12 @@ body {
 
 		.message-wrapper {
 			position: absolute;
-			bottom: 12px;
+			bottom: 16px;
 			left: 6%;
 			color: #d51a1a;
 			width: 90%;
-			font-size: 1.1em;
-			font-weight: 200;
+			font-size: 1.55em;
+			font-weight: 500;
 			text-align: start;
 		}
 	}
