@@ -4,6 +4,7 @@ import FeedbackList from "./components/FeedbackList"
 import Header from "./components/Header"
 import feedbackData from './data/feedbackData'
 import { v4 as uuidv4} from 'uuid'
+import Card from './components/Card'
 
 export default function App() {
 
@@ -22,11 +23,11 @@ export default function App() {
 		}, ...feedback])
 	}
 
-	return (
-		<div className="content">
+	return <>
+	
 			<Header/>
 			<FeedbackForm handleAppend={handleAppend}/>
 			<FeedbackList handleDelete={deleteFeedback} feedbackData={feedback}/>
-		</div>
-	)
-}
+
+	</>
+	}
