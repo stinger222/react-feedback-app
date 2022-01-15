@@ -21,7 +21,6 @@ export default function FeedbackList({feedbackData, handleDelete}) {
 	
 	return (
 		<div className="feedback-list-wrapper">
-			<Card/>
 			<div className="stats">
 				<span>{feedbackData.length} {feedbackData.length == 1 ? 'Review' : 'Reviews'}</span>
 				<span>Average rating: {averageRating || 0}</span>
