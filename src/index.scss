@@ -85,6 +85,16 @@ body {
 	}
 }
 
+.card {
+	color: black;
+	background: white;
+	margin: 20px 0;
+	padding: 30px;
+	border-radius: 15px;
+	position: relative;
+	font-weight: 500;
+	font-size: 1.2em;
+}
 
 #root {
 	display: grid;

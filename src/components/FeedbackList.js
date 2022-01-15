@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import FeedbackItem from "./FeedbackItem"
 import PropTypes from 'prop-types'
+import Card from "./Card"
 
 export default function FeedbackList({feedbackData, handleDelete}) {
 
@@ -20,6 +21,7 @@ export default function FeedbackList({feedbackData, handleDelete}) {
 	
 	return (
 		<div className="feedback-list-wrapper">
+			<Card/>
 			<div className="stats">
 				<span>{feedbackData.length} {feedbackData.length == 1 ? 'Review' : 'Reviews'}</span>
 				<span>Average rating: {averageRating || 0}</span>
