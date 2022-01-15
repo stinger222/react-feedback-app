@@ -1,26 +1,28 @@
+import { v4 as uuidv4} from 'uuid'
+
 let feedbackData = [
 	{
-		id: 0,
+		id: uuidv4(),
 		rating: 1,
 		description: "Excepteur quis dolore eiusmod do aliqua ullamco non Lorem laborum laboris id adipisicing non. Ullamco cupidatat pariatur officia eu elit deserunt tempor mollit duis proident enim. Nisi nisi aute sint adipisicing ea."
 	},
 	{
-		id: 1,
+		id: uuidv4(),
 		rating: 9,
 		description: "Excepteur quis dolore eiusmod do aliqua ullamco non Lorem laborum laboris id adipisicing non. Ullamco cupidatat pariatur officia eu elit deserunt tempor mollit duis proident enim. Nisi nisi aute sint adipisicing ea."
 	},
 	{
-		id: 2,
+		id: uuidv4(),
 		rating: 1,
 		description: "Excepteur quis dolore eiusmod do aliqua ullamco non Lorem laborum laboris id adipisicing non. Ullamco cupidatat pariatur officia eu elit deserunt tempor mollit duis proident enim. Nisi nisi aute sint adipisicing ea."
 	},
 	{
-		id: 3,
+		id: uuidv4(),
 		rating: 1,
 		description: "Excepteur quis dolore eiusmod do aliqua ullamco non Lorem laborum laboris id adipisicing non. Ullamco cupidatat pariatur officia eu elit deserunt tempor mollit duis proident enim. Nisi nisi aute sint adipisicing ea."
 	},
 	{
-		id: 4,
+		id: uuidv4(),
 		rating: 1,
 		description: "Excepteur quis dolore eiusmod do aliqua ullamco non Lorem laborum laboris id adipisicing non. Ullamco cupidatat pariatur officia eu elit deserunt tempor mollit duis proident enim. Nisi nisi aute sint adipisicing ea."
 	}

@@ -3,6 +3,7 @@ import FeedbackForm from "./components/FeedbackForm"
 import FeedbackList from "./components/FeedbackList"
 import Header from "./components/Header"
 import feedbackData from './data/feedbackData'
+import { v4 as uuidv4} from 'uuid'
 
 export default function App() {
 
@@ -15,7 +16,7 @@ export default function App() {
 
 	const handleAppend = (rating, description) => {
 		setFeedback([{
-			id: feedback.slice(-1).id + 1,
+			id: uuidv4(),
 			rating,
 			description
 		}, ...feedback])

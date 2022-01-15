@@ -26,7 +26,10 @@ FeedbackItem.propTypes = {
 			PropTypes.number,
 			PropTypes.string
 		]),
-		id: PropTypes.number,
+		id: PropTypes.oneOfType([
+			PropTypes.number,
+			PropTypes.string
+		]),
 		description: PropTypes.string
 	})
 }
