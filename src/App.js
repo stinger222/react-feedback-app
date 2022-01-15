@@ -4,6 +4,8 @@ import FeedbackList from "./components/FeedbackList"
 import Header from "./components/Header"
 import feedbackData from './data/feedbackData'
 import { v4 as uuidv4} from 'uuid'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import AboutPage from './components/pages/AboutPage'
 
 export default function App() {
 
@@ -22,9 +24,25 @@ export default function App() {
 		}, ...feedback])
 	}
 
-	return <>
-			<Header/>
-			<FeedbackForm handleAppend={handleAppend}/>
-			<FeedbackList handleDelete={deleteFeedback} feedbackData={feedback}/>
-	</>
+	return (
+		<Router>
+			<Header />
+
+				<Routes>
+					<Route
+						exact path="/" element={
+							<>
+								<div className="container">
+									<FeedbackForm handleAppend={handleAppend} />
+									<FeedbackList	handleDelete={deleteFeedback} feedbackData={feedback} />
+								</div>
+							</>
+						}
+						/>
+
+					<Route exact path="/about" element={<AboutPage/>}/>
+				
+				</Routes>
+		</Router>
+	);
 	}
