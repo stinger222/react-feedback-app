@@ -6,6 +6,7 @@ import feedbackData from './data/feedbackData'
 import { v4 as uuidv4} from 'uuid'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import AboutPage from './components/pages/AboutPage'
+import AboutIconLink from './components/AboutIconLink'
 
 export default function App() {
 
@@ -35,6 +36,7 @@ export default function App() {
 								<div className="container">
 									<FeedbackForm handleAppend={handleAppend} />
 									<FeedbackList	handleDelete={deleteFeedback} feedbackData={feedback} />
+									<AboutIconLink/>
 								</div>
 							</>
 						}
