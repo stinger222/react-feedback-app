@@ -7,6 +7,7 @@ import { v4 as uuidv4} from 'uuid'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import AboutPage from './components/pages/AboutPage'
 import AboutIconLink from './components/AboutIconLink'
+import ProductPage from './components/pages/ProductPage'
 
 export default function App() {
 
@@ -43,7 +44,9 @@ export default function App() {
 						/>
 
 					<Route exact path="/about" element={<AboutPage/>}/>
-				
+					
+					<Route path="/product/:id" element={<ProductPage/>}/>
+					
 				</Routes>
 		</Router>
 	);
