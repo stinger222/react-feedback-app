@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import FeedbackItem from "./FeedbackItem"
 import PropTypes from 'prop-types'
-import Card from "./Card"
 
-export default function FeedbackList({feedbackData, handleDelete}) {
+import { FeedbackContext } from "../context/FeedbackContext"
 
+export default function FeedbackList() {
+
+	const x = useContext(FeedbackContext)
+	const {handleDelete, feedbackData} = useContext(FeedbackContext)
 
 	const noFeedback = !feedbackData || feedbackData.length == 0
 	const [averageRating, setAverageRating] = useState(0)
@@ -19,6 +22,8 @@ export default function FeedbackList({feedbackData, handleDelete}) {
 		setAverageRating(calculateAverageRating())
 	})
 	
+
+	console.log(x);
 	return (
 		<div className="feedback-list-wrapper">
 			<div className="stats">
@@ -40,7 +45,7 @@ export default function FeedbackList({feedbackData, handleDelete}) {
 	)
 }
 
-FeedbackList.propTypes = {
-	feedbackData: PropTypes.array.isRequired,
-	handleDelete: PropTypes.func.isRequired
-}
+// FeedbackList.propTypes = {
+// 	feedbackData: PropTypes.array.isRequired,
+// 	handleDelete: PropTypes.func.isRequired
+// }
