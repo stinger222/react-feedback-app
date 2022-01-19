@@ -1,49 +1,49 @@
-import { useState, useContext } from "react"
-import "../index.scss"
-import Button from "./Button"
-import {FeedbackContext} from '../context/FeedbackContext'
+import { useState, useContext } from "react";
+import "../index.scss";
+import Button from "./Button";
+import { FeedbackContext } from "../context/FeedbackContext";
 
 export default function FeedbackForm() {
-	const [feedbackRating, setFeedbackRating] = useState(null)
-	const [feedbackDesc, setFeedbackDesc] = useState('')
-	const [submitDisabled, setSubmitDisabled] = useState(true)
-	const [errorMessage, setErrorMessage] = useState(null)
+	const [feedbackRating, setFeedbackRating] = useState(null);
+	const [feedbackDesc, setFeedbackDesc] = useState("");
+	const [submitDisabled, setSubmitDisabled] = useState(true);
+	const [errorMessage, setErrorMessage] = useState(null);
 
-	const {handleAppend} = useContext(FeedbackContext)
+	const { handleAppend } = useContext(FeedbackContext);
 
 	const handleRating = (event) => {
-		setFeedbackRating(parseInt(event.target.innerText))
-	}
+		setFeedbackRating(parseInt(event.target.innerText));
+	};
 
 	const handleInput = (event) => {
-		let value = event.target.value.trim()
+		let value = event.target.value.trim();
 
 		if (value.length === 0) {
-			setSubmitDisabled(true)
-			setErrorMessage(null)
-		} else if ( value !== '' &&value.length < 10) {
-			setSubmitDisabled(true)
-			setErrorMessage('Review must be at least 10 characters!')
+			setSubmitDisabled(true);
+			setErrorMessage(null);
+		} else if (value !== "" && value.length < 10) {
+			setSubmitDisabled(true);
+			setErrorMessage("Review must be at least 10 characters!");
 		} else {
-			setSubmitDisabled(false)
-			setErrorMessage(null)
+			setSubmitDisabled(false);
+			setErrorMessage(null);
 		}
 
-		setFeedbackDesc(event.target.value)
-	}
+		setFeedbackDesc(event.target.value);
+	};
 
 	let handleSubmit = (event) => {
-		event.preventDefault()
-		if (!feedbackRating || feedbackDesc.trim() == '') {
-			console.error('Feedback rating is not provided!!')
+		event.preventDefault();
+		if (!feedbackRating || feedbackDesc.trim() == "") {
+			console.error("Feedback rating is not provided!!");
 			// setErrorMessage('Please, rate our services before sending feedback!')
-			setErrorMessage('Rating required!')
-			return
+			setErrorMessage("Rating required!");
+			return;
 		}
-		handleAppend(feedbackRating, feedbackDesc)
-		setFeedbackRating(null)
-		setFeedbackDesc('')
-	}
+		handleAppend(feedbackRating, feedbackDesc);
+		setFeedbackRating(null);
+		setFeedbackDesc("");
+	};
 
 	return (
 		<form className="feedback-form">
@@ -118,23 +118,23 @@ export default function FeedbackForm() {
 			{/* <Button onClick={() => {console.log(1)}}>ACTIVE</Button> */}
 
 			<div className="input-wrapper">
-			<input
-			 onChange={handleInput}
-			 placeholder={'Write a review'}
-			 value={feedbackDesc}
-			/>
+				<input
+					onChange={handleInput}
+					placeholder={"Write a review"}
+					value={feedbackDesc}
+				/>
 
-			<Button className="btn-submit" onClick={handleSubmit} isDisabled={submitDisabled} type="submit">
-				Send
-			</Button>
-		</div>
-
-		{errorMessage && <div className="message-wrapper">
-				{errorMessage}
+				<Button
+					className="btn-submit"
+					onClick={handleSubmit}
+					isDisabled={submitDisabled}
+					type="submit"
+				>
+					Send
+				</Button>
 			</div>
-		}
 
+			{errorMessage && <div className="message-wrapper">{errorMessage}</div>}
 		</form>
-	)
+	);
 }
-
