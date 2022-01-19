@@ -1,9 +1,11 @@
+import { FeedbackContext } from "../context/FeedbackContext";
+import { useContext } from "react";
 import { FaTimes } from 'react-icons/fa'
-import PropTypes from 'prop-types'
 import Card from './Card'
 
+export default function FeedbackItem({item}) {
 
-export default function FeedbackItem({item, handleDelete}) {
+	const { handleDelete } = useContext(FeedbackContext);
 
 	return (
 		<Card className="feedback-item">
@@ -19,19 +21,3 @@ export default function FeedbackItem({item, handleDelete}) {
 		</Card>
 	)
 }
-
-FeedbackItem.propTypes = {
-	item: PropTypes.shape({
-		rating: PropTypes.oneOfType([
-			PropTypes.number,
-			PropTypes.string
-		]),
-		id: PropTypes.oneOfType([
-			PropTypes.number,
-			PropTypes.string
-		]),
-		description: PropTypes.string
-	})
-}
-
-

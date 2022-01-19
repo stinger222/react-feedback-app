@@ -1,14 +1,14 @@
-import { useState, useContext } from "react";
-import "../index.scss";
-import Button from "./Button";
 import { FeedbackContext } from "../context/FeedbackContext";
+import { useState, useContext } from "react";
+import Button from "./Button";
+import "../index.scss";
 
 export default function FeedbackForm() {
 	const [feedbackRating, setFeedbackRating] = useState(null);
 	const [feedbackDesc, setFeedbackDesc] = useState("");
 	const [submitDisabled, setSubmitDisabled] = useState(true);
 	const [errorMessage, setErrorMessage] = useState(null);
-
+	
 	const { handleAppend } = useContext(FeedbackContext);
 
 	const handleRating = (event) => {

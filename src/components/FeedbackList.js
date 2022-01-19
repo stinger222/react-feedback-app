@@ -37,7 +37,6 @@ export default function FeedbackList() {
 				{!noFeedback &&
 					feedbackData.map((item) => (
 						<FeedbackItem
-							handleDelete={handleDelete}
 							item={item}
 							key={item.id}
 						/>
