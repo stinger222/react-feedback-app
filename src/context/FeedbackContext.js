@@ -1,17 +1,17 @@
-import _feedbackData from "../data/feedbackData";
-import { createContext, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+import _feedbackData from "../data/feedbackData"
+import { createContext, useState } from "react"
+import { v4 as uuidv4 } from "uuid"
 
-export const FeedbackContext = createContext();
+export const FeedbackContext = createContext()
 
 export default function FeedbackProvider({ children }) {
-	const [feedbackData, setFeedbackData] = useState(_feedbackData);
+	const [feedbackData, setFeedbackData] = useState(_feedbackData)
 
 	const handleDelete = (id) => {
 		if (!window.confirm("Are you sure you want to delete this feedback?"))
-			return;
-		setFeedbackData(feedbackData.filter((i) => i.id != id));
-	};
+			return
+		setFeedbackData(feedbackData.filter((i) => i.id != id))
+	}
 
 	const handleAppend = (rating, description) => {
 		setFeedbackData([
@@ -21,8 +21,8 @@ export default function FeedbackProvider({ children }) {
 				description,
 			},
 			...feedbackData,
-		]);
-	};
+		])
+	}
 
 	return (
 		<FeedbackContext.Provider
@@ -30,5 +30,5 @@ export default function FeedbackProvider({ children }) {
 		>
 			{children}
 		</FeedbackContext.Provider>
-	);
+	)
 }

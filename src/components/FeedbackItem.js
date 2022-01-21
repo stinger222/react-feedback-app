@@ -1,11 +1,11 @@
-import { FeedbackContext } from "../context/FeedbackContext";
-import { useContext } from "react";
+import { FeedbackContext } from "../context/FeedbackContext"
+import { useContext } from "react"
 import { FaTimes } from 'react-icons/fa'
 import Card from './Card'
 
 export default function FeedbackItem({item}) {
 
-	const { handleDelete } = useContext(FeedbackContext);
+	const { handleDelete } = useContext(FeedbackContext)
 
 	return (
 		<Card className="feedback-item">

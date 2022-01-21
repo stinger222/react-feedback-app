@@ -1,24 +1,24 @@
-import { useEffect, useState, useContext } from "react";
-import { FeedbackContext } from "../context/FeedbackContext";
-import FeedbackItem from "./FeedbackItem";
+import { useEffect, useState, useContext } from "react"
+import { FeedbackContext } from "../context/FeedbackContext"
+import FeedbackItem from "./FeedbackItem"
 
 export default function FeedbackList() {
-	const { handleDelete, feedbackData } = useContext(FeedbackContext);
+	const { handleDelete, feedbackData } = useContext(FeedbackContext)
 
-	const noFeedback = !feedbackData || feedbackData.length == 0;
-	const [averageRating, setAverageRating] = useState(0);
+	const noFeedback = !feedbackData || feedbackData.length == 0
+	const [averageRating, setAverageRating] = useState(0)
 
 	const calculateAverageRating = () => {
-		if (noFeedback) return 0;
+		if (noFeedback) return 0
 		let average =
 			feedbackData.reduce((acc, cur) => acc + cur.rating, 0) /
-			feedbackData.length;
-		return average.toFixed(1).replace(/[.,]0$/, "");
-	};
+			feedbackData.length
+		return average.toFixed(1).replace(/[.,]0$/, "")
+	}
 
 	useEffect(() => {
-		setAverageRating(calculateAverageRating());
-	});
+		setAverageRating(calculateAverageRating())
+	})
 
 	return (
 		<div className="feedback-list-wrapper">
@@ -43,5 +43,5 @@ export default function FeedbackList() {
 					))}
 			</div>
 		</div>
-	);
+	)
 }
