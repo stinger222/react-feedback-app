@@ -1,5 +1,5 @@
 import { FeedbackContext } from "../context/FeedbackContext"
-import { useState, useContext } from "react"
+import { useState, useContext, useEffect } from "react"
 import Button from "./Button"
 import "../index.scss"
 
@@ -9,7 +9,7 @@ export default function FeedbackForm() {
 	const [submitDisabled, setSubmitDisabled] = useState(true)
 	const [errorMessage, setErrorMessage] = useState(null)
 	
-	const { handleAppend } = useContext(FeedbackContext)
+	const { handleAppend, nowEditingItem, setFeedbackData, setNowEditingItem} = useContext(FeedbackContext)
 
 	const handleRating = (event) => {
 		setFeedbackRating(parseInt(event.target.innerText))
@@ -21,9 +21,9 @@ export default function FeedbackForm() {
 		if (value.length === 0) {
 			setSubmitDisabled(true)
 			setErrorMessage(null)
-		} else if (value !== "" && value.length < 10) {
+		} else if (value !== "" && value.length < 5) {
 			setSubmitDisabled(true)
-			setErrorMessage("Review must be at least 10 characters!")
+			setErrorMessage("Review must be at least 5 characters!")
 		} else {
 			setSubmitDisabled(false)
 			setErrorMessage(null)
@@ -45,6 +45,38 @@ export default function FeedbackForm() {
 		setFeedbackDesc("")
 		setErrorMessage("")
 	}
+
+	const handleEdit = (event) => {
+		event.preventDefault()
+
+		// editing selected feedback in feedbackData
+		setFeedbackData(prev => {
+			return prev.map(i => {
+				if (i.id === nowEditingItem.item.id) {
+					return {
+						id: i.id,
+						description: feedbackDesc,
+						rating: feedbackRating
+					}
+				}
+				return i
+			})
+		})
+		
+		setFeedbackDesc('')
+		setFeedbackRating(null)
+		setNowEditingItem({item: null, nowEditing: false})
+	}
+	
+	useEffect(() => {
+		if (nowEditingItem.nowEditing) {
+			console.log('DICk');
+			const item = nowEditingItem.item
+			setFeedbackRating(item.rating)
+			setFeedbackDesc(item.description)
+		}
+
+	}, [nowEditingItem.nowEditing])
 
 	return (
 		<form className="feedback-form">
@@ -116,8 +148,6 @@ export default function FeedbackForm() {
 				</Button>
 			</div>
 
-			{/* <Button onClick={() => {console.log(1)}}>ACTIVE</Button> */}
-
 			<div className="input-wrapper">
 				<input
 					onChange={handleInput}
@@ -125,14 +155,28 @@ export default function FeedbackForm() {
 					value={feedbackDesc}
 				/>
 
-				<Button
-					className="btn-submit"
-					onClick={handleSubmit}
-					isDisabled={submitDisabled}
-					type="submit"
-				>
-					Send
-				</Button>
+				{/* different onClick functions (for edit and regular appending) */}
+				{!nowEditingItem.nowEditing && <Button
+						className="btn-submit"
+						onClick={handleSubmit}
+						isDisabled={submitDisabled}
+						type="submit"
+					>
+						Send
+					</Button>
+				}
+
+				{nowEditingItem.nowEditing && <Button
+						className="btn-submit"
+						onClick={handleEdit}
+						isDisabled={false}
+						type="submit"
+					>
+						Edit
+					</Button>
+				}
+
+
 			</div>
 
 			{errorMessage && <div className="message-wrapper">{errorMessage}</div>}

@@ -24,9 +24,14 @@ export default function FeedbackProvider({ children }) {
 		])
 	}
 
+	const [nowEditingItem, setNowEditingItem] = useState({
+		item: null,
+		nowEditing: false
+	})
+
 	return (
 		<FeedbackContext.Provider
-			value={{ feedbackData, handleAppend, handleDelete }}
+			value={{ feedbackData, setFeedbackData, handleAppend, handleDelete, nowEditingItem, setNowEditingItem }}
 		>
 			{children}
 		</FeedbackContext.Provider>
