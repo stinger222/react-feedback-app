@@ -245,7 +245,7 @@ header {
 				font-weight: 400;
 			}
 
-			.close {
+			.edit, .close {
 				position: absolute;
 				right: 1.2em;
 				top: 1.2em;
@@ -258,6 +258,10 @@ header {
 					height: 1.4em;
 					width: 1.4em;
 				}
+			}
+
+			.edit {
+				right: 3.2em;
 			}
 
 			.review-text {
