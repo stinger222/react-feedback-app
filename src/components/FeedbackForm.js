@@ -40,43 +40,40 @@ export default function FeedbackForm() {
 			setErrorMessage("Rating required!")
 			return
 		}
-		handleAppend(feedbackRating, feedbackDesc)
+
+		if (nowEditingItem.editing) {
+			// editing selected feedback in feedbackData
+			setFeedbackData((prev) => {
+				return prev.map((i) => {
+					if (i.id === nowEditingItem.item.id) {
+						return {
+							id: i.id,
+							text: feedbackDesc,
+							rating: feedbackRating,
+						}
+					}
+					return i
+				})
+			})
+			setNowEditingItem({item: null, nowEditing: false})
+		} else {
+			handleAppend(feedbackRating, feedbackDesc)
+		}
+
 		setFeedbackRating(null)
 		setFeedbackDesc("")
 		setErrorMessage("")
 	}
-
-	const handleEdit = (event) => {
-		event.preventDefault()
-
-		// editing selected feedback in feedbackData
-		setFeedbackData(prev => {
-			return prev.map(i => {
-				if (i.id === nowEditingItem.item.id) {
-					return {
-						id: i.id,
-						description: feedbackDesc,
-						rating: feedbackRating
-					}
-				}
-				return i
-			})
-		})
-		
-		setFeedbackDesc('')
-		setFeedbackRating(null)
-		setNowEditingItem({item: null, nowEditing: false})
-	}
 	
 	useEffect(() => {
-		if (nowEditingItem.nowEditing) {
-			console.log('DICk');
+		if (nowEditingItem.editing) {
 			const item = nowEditingItem.item
 			setFeedbackRating(item.rating)
-			setFeedbackDesc(item.description)
+			setFeedbackDesc(item.text)
+			setSubmitDisabled(false)
 		}
 
-	}, [nowEditingItem.nowEditing])
+	}, [nowEditingItem.editing])
 
 	return (
 		<form className="feedback-form">
@@ -155,30 +152,15 @@ export default function FeedbackForm() {
 					value={feedbackDesc}
 				/>
 
-				{/* different onClick functions (for edit and regular appending) */}
-				{!nowEditingItem.nowEditing && <Button
-						className="btn-submit"
-						onClick={handleSubmit}
-						isDisabled={submitDisabled}
-						type="submit"
-					>
-						Send
-					</Button>
-				}
-
-				{nowEditingItem.nowEditing && <Button
-						className="btn-submit"
-						onClick={handleEdit}
-						isDisabled={false}
-						type="submit"
-					>
-						Edit
-					</Button>
-				}
-
-
+				<Button
+					className="btn-submit"
+					onClick={handleSubmit}
+					isDisabled={submitDisabled}
+					type="submit"
+				>
+					Send
+				</Button>
 			</div>
-
 			{errorMessage && <div className="message-wrapper">{errorMessage}</div>}
 		</form>
 	)

@@ -4,27 +4,27 @@ let feedbackData = [
 	{
 		id: uuidv4(),
 		rating: 1,
-		description: "Excepteur quis dolore eiusmod do aliqua ullamco non Lorem laborum laboris id adipisicing non. Ullamco cupidatat pariatur officia eu elit deserunt tempor mollit duis proident enim. Nisi nisi aute sint adipisicing ea."
+		text: "Excepteur quis dolore eiusmod do aliqua ullamco non Lorem laborum laboris id adipisicing non. Ullamco cupidatat pariatur officia eu elit deserunt tempor mollit duis proident enim. Nisi nisi aute sint adipisicing ea."
 	},
 	{
 		id: uuidv4(),
 		rating: 9,
-		description: "Excepteur quis dolore eiusmod do aliqua ullamco non Lorem laborum laboris id adipisicing non. Ullamco cupidatat pariatur officia eu elit deserunt tempor mollit duis proident enim. Nisi nisi aute sint adipisicing ea."
+		text: "Excepteur quis dolore eiusmod do aliqua ullamco non Lorem laborum laboris id adipisicing non. Ullamco cupidatat pariatur officia eu elit deserunt tempor mollit duis proident enim. Nisi nisi aute sint adipisicing ea."
 	},
 	{
 		id: uuidv4(),
 		rating: 1,
-		description: "Excepteur quis dolore eiusmod do aliqua ullamco non Lorem laborum laboris id adipisicing non. Ullamco cupidatat pariatur officia eu elit deserunt tempor mollit duis proident enim. Nisi nisi aute sint adipisicing ea."
+		text: "Excepteur quis dolore eiusmod do aliqua ullamco non Lorem laborum laboris id adipisicing non. Ullamco cupidatat pariatur officia eu elit deserunt tempor mollit duis proident enim. Nisi nisi aute sint adipisicing ea."
 	},
 	{
 		id: uuidv4(),
 		rating: 1,
-		description: "Excepteur quis dolore eiusmod do aliqua ullamco non Lorem laborum laboris id adipisicing non. Ullamco cupidatat pariatur officia eu elit deserunt tempor mollit duis proident enim. Nisi nisi aute sint adipisicing ea."
+		text: "Excepteur quis dolore eiusmod do aliqua ullamco non Lorem laborum laboris id adipisicing non. Ullamco cupidatat pariatur officia eu elit deserunt tempor mollit duis proident enim. Nisi nisi aute sint adipisicing ea."
 	},
 	{
 		id: uuidv4(),
 		rating: 1,
-		description: "Excepteur quis dolore eiusmod do aliqua ullamco non Lorem laborum laboris id adipisicing non. Ullamco cupidatat pariatur officia eu elit deserunt tempor mollit duis proident enim. Nisi nisi aute sint adipisicing ea."
+		text: "Excepteur quis dolore eiusmod do aliqua ullamco non Lorem laborum laboris id adipisicing non. Ullamco cupidatat pariatur officia eu elit deserunt tempor mollit duis proident enim. Nisi nisi aute sint adipisicing ea."
 	}
 ]
 

@@ -13,12 +13,12 @@ export default function FeedbackProvider({ children }) {
 		setFeedbackData(feedbackData.filter((i) => i.id != id))
 	}
 
-	const handleAppend = (rating, description) => {
+	const handleAppend = (rating, text) => {
 		setFeedbackData([
 			{
 				id: uuidv4(),
 				rating,
-				description,
+				text,
 			},
 			...feedbackData,
 		])
@@ -26,7 +26,7 @@ export default function FeedbackProvider({ children }) {
 
 	const [nowEditingItem, setNowEditingItem] = useState({
 		item: null,
-		nowEditing: false
+		editing: false
 	})
 
 	return (

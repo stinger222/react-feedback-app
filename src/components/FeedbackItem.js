@@ -12,14 +12,14 @@ export default function FeedbackItem({item}) {
 			<span className="feedback-item-rating">
 				{item.rating}
 			</span>
-			<button onClick={() => setNowEditingItem({item, nowEditing: true})} className='edit'>
+			<button onClick={() => setNowEditingItem({item, editing: true})} className='edit'>
 				<FaEdit color='purple'/>
 			</button>
 			<button onClick={() => handleDelete(item.id)} className='close'>
 				<FaTimes color='purple'/>
 			</button>
 			<span className="review-text">
-				{item.description}
+				{item.text}
 			</span>
 		</Card>
 	)
