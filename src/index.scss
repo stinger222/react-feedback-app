@@ -112,7 +112,8 @@ header {
 	display: flex;
 	align-items: center;
 
-	span {
+	a {
+		text-decoration: none;
 		color: rgb(218, 72, 157);
 		font-size: 1.9rem;
 		font-weight: 500;
