@@ -6,6 +6,7 @@ export const FeedbackContext = createContext()
 
 export default function FeedbackProvider({ children }) {
 	const [feedbackData, setFeedbackData] = useState(_feedbackData)
+	const [errorMessage, setErrorMessage] = useState(null)
 
 	const handleDelete = (id) => {
 		if (!window.confirm("Are you sure you want to delete this feedback?"))
@@ -31,7 +32,16 @@ export default function FeedbackProvider({ children }) {
 
 	return (
 		<FeedbackContext.Provider
-			value={{ feedbackData, setFeedbackData, handleAppend, handleDelete, nowEditingItem, setNowEditingItem }}
+			value={{
+				feedbackData,
+				setFeedbackData,
+				handleAppend,
+				handleDelete,
+				nowEditingItem,
+				setNowEditingItem,
+				errorMessage,
+				setErrorMessage
+			}}
 		>
 			{children}
 		</FeedbackContext.Provider>
