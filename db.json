@@ -1,0 +1,14 @@
+{
+  "feedback": [
+    {
+      "rating": 9,
+      "text": "This is feedback from fake backend server :D",
+      "id": "PbGWCxM"
+    },
+    {
+      "rating": 9,
+      "text": "This is a second feedback from fake backend server :D",
+      "id": "kLVWCyO"
+    }
+  ]
+}
