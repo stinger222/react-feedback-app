@@ -34,6 +34,21 @@
 	cursor: default;
 }
 
+.loader-wrapper {
+	grid-column: 2 / 3;
+	display: flex;
+	justify-content: center;
+
+	.loader {
+		height: 140px;
+		width: 140px;
+		border: 1em solid white;
+		border-top-color: transparent;
+		animation: load 1s linear infinite;
+		border-radius: 50%;
+	}
+}
+
 @media screen and (max-width: 1100px) {
 	.container {
 		grid-template-columns: 1fr 80% 1fr !important;
@@ -270,7 +285,7 @@ header {
 			}
 		}
 	}
-
+	
 	.about-icon {
 		position: fixed;
 		bottom: 30px;
@@ -289,5 +304,14 @@ header {
 		svg {
 			vertical-align: middle;
 		}
+	}
+}
+
+@keyframes load {
+	0% {
+		transform: rotate(45deg);
+	}
+	100% {
+		transform: rotate(405deg);
 	}
 }

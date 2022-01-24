@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from "react"
 import { FeedbackContext } from "../context/FeedbackContext"
 import FeedbackItem from "./FeedbackItem"
+import Loader from "./Loader"
 
 export default function FeedbackList() {
 	const { handleDelete, feedbackData } = useContext(FeedbackContext)
@@ -22,8 +23,7 @@ export default function FeedbackList() {
 
 	return (
 	<>
-		{noFeedback && <h1>SUCK MY BALLS</h1>}
-		
+		{noFeedback && <Loader/>}
 		
 		{!noFeedback && 
 			<div className="feedback-list-wrapper">
