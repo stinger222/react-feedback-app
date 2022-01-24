@@ -1,6 +1,7 @@
 import { FeedbackContext } from "../context/FeedbackContext"
 import { useState, useContext, useEffect } from "react"
 import Button from "./Button"
+import axios from "axios"
 import "../index.scss"
 
 export default function FeedbackForm() {
@@ -11,8 +12,8 @@ export default function FeedbackForm() {
 	const {
 		handleAppend, nowEditingItem, 
 		setFeedbackData, setNowEditingItem,
-		errorMessage, setErrorMessage
-	} = useContext(FeedbackContext)
+		errorMessage, setErrorMessage,
+		handleUpdate } = useContext(FeedbackContext)
 
 	const handleRating = (event) => {
 		setFeedbackRating(parseInt(event.target.innerText))
@@ -37,7 +38,7 @@ export default function FeedbackForm() {
 
 	let handleSubmit = (event) => {
 		event.preventDefault()
-		if (!feedbackRating || feedbackDesc.trim() == "") {
+		if (!feedbackRating || feedbackDesc.trim() === "") {
 			console.error("Feedback rating is not provided!!")
 			// setErrorMessage('Please, rate our services before sending feedback!')
 			setErrorMessage("Rating required!")
@@ -45,19 +46,12 @@ export default function FeedbackForm() {
 		}
 
 		if (nowEditingItem.editing) {
-			// editing selected feedback in feedbackData
-			setFeedbackData((prev) => {
-				return prev.map((i) => {
-					if (i.id === nowEditingItem.item.id) {
-						return {
-							id: i.id,
-							text: feedbackDesc,
-							rating: feedbackRating,
-						}
-					}
-					return i
-				})
-			})
+			const updatedFeedback = {
+				text: feedbackDesc,
+				rating: feedbackRating,
+				id: nowEditingItem.item.id
+			}
+			handleUpdate(updatedFeedback)
 			setNowEditingItem({item: null, nowEditing: false})
 		} else {
 			handleAppend(feedbackRating, feedbackDesc)

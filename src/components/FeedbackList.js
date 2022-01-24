@@ -5,7 +5,7 @@ import FeedbackItem from "./FeedbackItem"
 export default function FeedbackList() {
 	const { handleDelete, feedbackData } = useContext(FeedbackContext)
 
-	const noFeedback = !feedbackData || feedbackData.length == 0
+	const noFeedback = !feedbackData || feedbackData.length === 0
 	const [averageRating, setAverageRating] = useState(0)
 
 	const calculateAverageRating = () => {
@@ -21,27 +21,34 @@ export default function FeedbackList() {
 	})
 
 	return (
-		<div className="feedback-list-wrapper">
-			<div className="stats">
-				<span>
-					{feedbackData.length}{" "}
-					{feedbackData.length == 1 ? "Review" : "Reviews"}
-				</span>
-				<span>Average rating: {averageRating || 0}</span>
-			</div>
-			<div className="feedback-list">
-				{noFeedback && (
-					<h2 className="no_feedback">There is no feedback yet.</h2>
-				)}
+	<>
+		{noFeedback && <h1>SUCK MY BALLS</h1>}
+		
+		
+		{!noFeedback && 
+			<div className="feedback-list-wrapper">
+				<div className="stats">
+					<span>
+						{feedbackData.length}{" "}
+						{feedbackData.length === 1 ? "Review" : "Reviews"}
+					</span>
+					<span>Average rating: {averageRating || 0}</span>
+				</div>
+				<div className="feedback-list">
+					{noFeedback && (
+						<h2 className="no_feedback">There is no feedback yet.</h2>
+					)}
 
-				{!noFeedback &&
-					feedbackData.map((item) => (
-						<FeedbackItem
-							item={item}
-							key={item.id}
-						/>
-					))}
+					{!noFeedback &&
+						feedbackData.map((item) => (
+							<FeedbackItem
+								item={item}
+								key={item.id}
+							/>
+						))}
+				</div>
 			</div>
-		</div>
+		}
+		</>
 	)
 }
