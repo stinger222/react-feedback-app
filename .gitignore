@@ -22,6 +22,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+.vscode
+
 db-1642963108325.json
 db-1643011930384.json
 db.json
