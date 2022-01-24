@@ -1,6 +1,6 @@
 # Fake Feedback App
 
-This is a simple "feedback" application made for practice some react fundamentals.
+This is a simple "feedback" application made to practice some react fundamentals.
 
 ## How to start this piece of garbage?
 
