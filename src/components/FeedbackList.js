@@ -21,34 +21,30 @@ export default function FeedbackList() {
 		setAverageRating(calculateAverageRating())
 	})
 
-	return (
-	<>
-		{noFeedback && <Loader/>}
-		
-		{!noFeedback && 
-			<div className="feedback-list-wrapper">
-				<div className="stats">
-					<span>
-						{feedbackData.length}{" "}
-						{feedbackData.length === 1 ? "Review" : "Reviews"}
-					</span>
-					<span>Average rating: {averageRating || 0}</span>
-				</div>
-				<div className="feedback-list">
-					{noFeedback && (
-						<h2 className="no_feedback">There is no feedback yet.</h2>
-					)}
+	if (noFeedback) return <Loader/>
 
-					{!noFeedback &&
-						feedbackData.map((item) => (
-							<FeedbackItem
-								item={item}
-								key={item.id}
-							/>
-						))}
-				</div>
+	return (
+		<div className="feedback-list-wrapper">
+			<div className="stats">
+				<span>
+					{feedbackData.length}{" "}
+					{feedbackData.length === 1 ? "Review" : "Reviews"}
+				</span>
+				<span>Average rating: {averageRating || 0}</span>
 			</div>
-		}
-		</>
+			<div className="feedback-list">
+				{noFeedback && (
+					<h2 className="no_feedback">There is no feedback yet.</h2>
+				)}
+
+				{!noFeedback &&
+					feedbackData.map((item) => (
+						<FeedbackItem
+							item={item}
+							key={item.id}
+						/>
+					))}
+			</div>
+		</div>
 	)
 }
