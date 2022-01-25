@@ -12,22 +12,33 @@ export default function FeedbackProvider({ children }) {
 		editing: false
 	})
 
-	const fetchData = async () => {
-		const response = await axios.get('http://localhost:5000/feedback')
-		setFeedbackData(response.data.reverse())
+	const instance = axios.create({
+		baseURL: 'http://localhost:5000',
+		timeout: 1000,
+	});
+
+	const fetchData = () => {
+		instance.get('/feedback').then(response => {
+			setFeedbackData(response.data.reverse())
+		}).catch(e => {
+			console.error(e);
+			setErrorMessage(`Data getting is failed!`)
+		})
+
+		
 	}
 
 	useEffect(fetchData, [])
 
 	const handleDelete =  (id) => {
 		if (!window.confirm("Are you sure you want to delete this feedback?")) return
-		axios.delete(`http://localhost:5000/feedback/${id}`).catch(() => {
+		instance.delete(`/feedback/${id}`).catch(() => {
 			setErrorMessage('Deleting failed!' )
 		}).then(fetchData)
 	}
 
 	const handleAppend = (rating, text) => {
-		axios.post(`http://localhost:5000/feedback`, {
+		instance.post(`/feedback`, {
 			rating,
 			text,
 		}).catch(e => {
@@ -36,7 +47,7 @@ export default function FeedbackProvider({ children }) {
 	}
 
 	const handleUpdate = ({id, rating, text}) => {
-		axios.put(`http://localhost:5000/feedback/${id}`, {
+		instance.put(`/feedback/${id}`, {
 			rating,
 			text,
 		}).catch(e => {
