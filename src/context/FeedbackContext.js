@@ -1,6 +1,5 @@
 import axios from "axios"
 import { createContext, useEffect, useState } from "react"
-import { v4 as uuidv4 } from "uuid"
 
 export const FeedbackContext = createContext()
 
@@ -13,27 +12,30 @@ export default function FeedbackProvider({ children }) {
 	})
 
 	const instance = axios.create({
-		baseURL: 'http://localhost:5000',
+		baseURL: 'http://localhost:3001/api',
 		timeout: 1000,
 	});
-
+	
 	const fetchData = () => {
-		instance.get('/feedback').then(response => {
+		instance.get('user/1').then(response => {
+			console.log(response);
 			setFeedbackData(response.data.reverse())
 		}).catch(e => {
 			console.error(e);
 			setErrorMessage(`Data getting is failed!`)
 		})
 
-		
 	}
 
 	useEffect(fetchData, [])
+	useEffect(() => console.log('Current feedback state: ', feedbackData))
+
 
 	const handleDelete =  (id) => {
 		if (!window.confirm("Are you sure you want to delete this feedback?")) return
-		instance.delete(`/feedback/${id}`).catch(() => {
-			setErrorMessage('Deleting failed!' )
+		instance.delete(`/feedback/${id}`).catch(e => {
+			setErrorMessage('Deleting failed!')
+			console.error(e);
 		}).then(fetchData)
 	}
 
@@ -43,6 +45,7 @@ export default function FeedbackProvider({ children }) {
 			text,
 		}).catch(e => {
 			setErrorMessage('Appending failed!')
+			console.error(e);
 		}).then(fetchData)
 	}
 
@@ -52,6 +55,7 @@ export default function FeedbackProvider({ children }) {
 			text,
 		}).catch(e => {
 			setErrorMessage('Updating failed!')
+			console.error(e);
 		}).then(fetchData)
 	}
 
