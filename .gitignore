@@ -25,3 +25,4 @@ yarn-error.log*
 db-1642963108325.json
 db-1643011930384.json
 db.json
+/config
