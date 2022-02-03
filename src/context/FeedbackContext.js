@@ -13,12 +13,11 @@ export default function FeedbackProvider({ children }) {
 
 	const instance = axios.create({
 		baseURL: 'http://localhost:3001/api',
-		timeout: 1000,
+		timeout: 5000,
 	});
 	
 	const fetchData = () => {
 		instance.get('user/1').then(response => {
-			console.log(response);
 			setFeedbackData(response.data.reverse())
 		}).catch(e => {
 			console.error(e);
@@ -26,10 +25,6 @@ export default function FeedbackProvider({ children }) {
 		})
 
 	}
-
-	useEffect(fetchData, [])
-	useEffect(() => console.log('Current feedback state: ', feedbackData))
-
 
 	const handleDelete =  (id) => {
 		if (!window.confirm("Are you sure you want to delete this feedback?")) return
@@ -58,6 +53,8 @@ export default function FeedbackProvider({ children }) {
 			console.error(e);
 		}).then(fetchData)
 	}
+
+	useEffect(fetchData, [])
 
 	return (
 		<FeedbackContext.Provider
