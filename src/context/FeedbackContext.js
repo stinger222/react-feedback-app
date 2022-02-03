@@ -14,13 +14,13 @@ export default function FeedbackProvider({ children }) {
 	const instance = axios.create({
 		baseURL: 'http://localhost:3001/api',
 		timeout: 5000,
-	});
+	})
 	
 	const fetchData = () => {
 		instance.get('user/1').then(response => {
 			setFeedbackData(response.data.reverse())
 		}).catch(e => {
-			console.error(e);
+			console.error(e)
 			setErrorMessage(`Data getting is failed!`)
 		})
 
@@ -30,7 +30,7 @@ export default function FeedbackProvider({ children }) {
 		if (!window.confirm("Are you sure you want to delete this feedback?")) return
 		instance.delete(`/feedback/${id}`).catch(e => {
 			setErrorMessage('Deleting failed!')
-			console.error(e);
+			console.error(e)
 		}).then(fetchData)
 	}
 
@@ -40,7 +40,7 @@ export default function FeedbackProvider({ children }) {
 			text,
 		}).catch(e => {
 			setErrorMessage('Appending failed!')
-			console.error(e);
+			console.error(e)
 		}).then(fetchData)
 	}
 
@@ -50,7 +50,7 @@ export default function FeedbackProvider({ children }) {
 			text,
 		}).catch(e => {
 			setErrorMessage('Updating failed!')
-			console.error(e);
+			console.error(e)
 		}).then(fetchData)
 	}
 

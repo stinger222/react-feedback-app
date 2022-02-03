@@ -1,11 +1,11 @@
-import { FeedbackContext } from "../context/FeedbackContext";
-import { useContext } from "react";
+import { FeedbackContext } from "../context/FeedbackContext"
+import { useContext } from "react"
 import { FaTimes, FaEdit } from 'react-icons/fa'
 import Card from './Card'
 
 export default function FeedbackItem({item}) {
 
-	const { handleDelete, setNowEditingItem, nowEditingItem, setErrorMessage} = useContext(FeedbackContext);
+	const { handleDelete, setNowEditingItem, nowEditingItem, setErrorMessage} = useContext(FeedbackContext)
 
 	const handleEdit = () => {
 		if (!nowEditingItem.editing) {

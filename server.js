@@ -15,7 +15,7 @@ app.get('/api/user/:user_id', (req, res) => {
 	const query = `SELECT * FROM \`feedbacks\` WHERE user_id = ${req.params.user_id}`
 
  	db.query(query, (err, data) => {
-		console.log("GET /users/", req.params.user_id);
+		console.log("GET /users/", req.params.user_id)
 
 		if (err) {
 			res.statusCode = 400
@@ -31,7 +31,7 @@ app.get('/api/feedback/:feedback_id', (req, res) => {
 	const query = `SELECT * FROM \`feedbacks\` WHERE feedback_id = ${req.params.feedback_id};`
 
 	db.query(query, (err, data) => {
-		console.log("GET /feedback/", req.params.feedback_id);
+		console.log("GET /feedback/", req.params.feedback_id)
 		if (err) {
 			res.statusCode = 400
 			res.json({error: "Error occurred!"})
