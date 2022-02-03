@@ -1,14 +1,11 @@
 const express = require('express')
-const cors = require('cors')
+const config = require('config')
 const mysql = require('mysql')
+const cors = require('cors')
+
 const app = express()
 
-const db = mysql.createConnection({
-	host: "db-test",
-	user: "some_user",
-	password: "password",
-	database: "feedback-database",
-})
+const db = mysql.createConnection(config.get('sql-config'))
 db.connect();
 
 app.use(cors())
@@ -96,5 +93,5 @@ app.delete('/api/feedback/:feedback_id', (req, res) => {
 
 
 
-
-app.listen(3001, () => console.log('app has been started on port 3001, kekw'))
+const port = config.get('server-port')
+app.listen(+port, () => console.log('app has been started on port 3001, kekw'))
