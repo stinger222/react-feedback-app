@@ -55,7 +55,7 @@ app.put('/api/feedback/:feedback_id', (req, res) => {
 			res.json({error: "Updating failed!"})
 		} else {	
 			res.statusCode = 200
-			res.json({message: 'feedback updated successfully'})
+			res.json({message: 'Feedback updated successfully!'})
 		}
 	})
 })
@@ -71,7 +71,7 @@ app.post('/api/feedback', (req, res) => {
 			res.json({error: "Appending failed!"})
 		} else {	
 			res.statusCode = 201
-			res.json({message: 'feedback added successfully'})
+			res.json({message: 'Feedback added successfully!'})
 		}
 	})
 })
@@ -86,12 +86,38 @@ app.delete('/api/feedback/:feedback_id', (req, res) => {
 			res.json({error: "Deleting failed!"})
 		} else {	
 			res.statusCode = 200
-			res.json({message: 'feedback deleted successfully'})
+			res.json({message: 'Feedback deleted successfully!'})
 		}
 	})
 })
 
+// auth part
 
+app.post("/register", (req, res) => {
+	console.log('REGISTER REQUEST');
+
+	const insertQuery = `INSERT INTO \`users\` (\`login\`, \`password_hash\`)
+	VALUES ('${req.body.login}', '${req.body.password}')`
+
+	const checkQuery = 'SELECT * FROM \`users\` WHERE login = ?'
+	
+	db.query(checkQuery, [req.body.login], (err, data) => {
+		if (data.length > 0) {
+			res.statusCode = 400
+			res.json({error: "Such user already exists!"})
+		} else {
+			db.query(insertQuery, (err) => {
+				if (err) {
+					res.statusCode = 400
+					res.json({error: "User creating is failed!"})
+				} else {	
+					res.statusCode = 201
+					res.json({message: 'User created successfully!'})
+				}
+			})
+		}
+	})
+})
 
 const port = config.get('server-port')
 app.listen(+port, () => console.log('app has been started on port 3001, kekw'))
