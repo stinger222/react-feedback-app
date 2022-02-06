@@ -23,6 +23,8 @@ export default function RegisterPage() {
 		axios.post('http://localhost:3001/register', {
 			password,
 			login
+		}, {
+			withCredentials: true
 		})
 	}
 
