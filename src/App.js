@@ -6,6 +6,7 @@ import FeedbackList from "./components/FeedbackList"
 import AboutPage from "./components/pages/AboutPage"
 import Header from "./components/Header"
 import RegisterPage from "./components/pages/RegisterPage"
+import LoginPage from "./components/pages/LoginPage"
 
 export default function App() {
 	return (
@@ -31,6 +32,7 @@ export default function App() {
 
 					<Route exact path="/register" element={<RegisterPage />} />
 
+					<Route exact path="/login" element={<LoginPage />} />
 				</Routes>
 			</Router>
 		</FeedbackProvider>
