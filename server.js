@@ -1,15 +1,25 @@
 const express = require('express')
 const config = require('config')
 const mysql = require('mysql')
+const cookieParser = require('cookie-parser') 
 const cors = require('cors')
 
 const app = express()
 
 const db = mysql.createConnection(config.get('sql-config'))
-db.connect();
+db.connect()
+db.query("SET SESSION wait_timeout = 604800")
 
-app.use(cors())
+app.use(cookieParser())
 app.use(express.json())
+
+const allowCrossDomain = function(req,res,next) {
+  res.header('Access-Control-Allow-Origin', config.get('client-origin'));
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header("Access-Control-Allow-Headers", "Content-Type")
+  next();  
+}
+app.use(allowCrossDomain);
 
 app.get('/api/user/:user_id', (req, res) => {
 	const query = `SELECT * FROM \`feedbacks\` WHERE user_id = ${req.params.user_id}`
@@ -94,8 +104,7 @@ app.delete('/api/feedback/:feedback_id', (req, res) => {
 // auth part
 
 app.post("/register", (req, res) => {
-	console.log('REGISTER REQUEST');
-
+	console.log('Register request');
 	const insertQuery = `INSERT INTO \`users\` (\`login\`, \`password_hash\`)
 	VALUES ('${req.body.login}', '${req.body.password}')`
 
