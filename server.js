@@ -128,5 +128,17 @@ app.post("/register", (req, res) => {
 	})
 })
 
+app.post("/login", (req, res) => {
+	db.query('SELECT * FROM `users` WHERE `login` = ? AND `password_hash` = ? LIMIT 1', [req.body.login, req.body.password], (err, users) => {
+		if (users.length === 0) {
+			res.statusCode = 400
+			res.json({error: 'User not found!'})
+		}
+		else {
+			res.cookie('authorized', 'true', {maxAge: 600000}).json({message: 'success'})
+		}
+	})
+})
+
 const port = config.get('server-port')
 app.listen(+port, () => console.log('app has been started on port 3001, kekw'))
