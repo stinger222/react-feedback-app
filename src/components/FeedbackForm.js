@@ -1,8 +1,7 @@
 import { FeedbackContext } from "../context/FeedbackContext"
 import { useState, useContext, useEffect } from "react"
 import Button from "./Button"
-import axios from "axios"
-import "../index.scss"
+import "../styles/index.scss"
 
 export default function FeedbackForm() {
 	const [feedbackRating, setFeedbackRating] = useState(null)
@@ -11,9 +10,9 @@ export default function FeedbackForm() {
 	
 	const {
 		handleAppend, nowEditingItem, 
-		setFeedbackData, setNowEditingItem,
-		errorMessage, setErrorMessage,
-		handleUpdate } = useContext(FeedbackContext)
+		setNowEditingItem, errorMessage,
+		setErrorMessage, handleUpdate 
+	} = useContext(FeedbackContext)
 
 	const handleRating = (event) => {
 		setFeedbackRating(parseInt(event.target.innerText))
@@ -80,63 +79,63 @@ export default function FeedbackForm() {
 				<Button
 					type="button"
 					onClick={handleRating}
-					className={`btn btn-rate${feedbackRating === 1 ? " selected" : ""}`}
+					className={`btn-rate${feedbackRating === 1 ? " selected" : ""}`}
 				>
 					1
 				</Button>
 				<Button
 					type="button"
 					onClick={handleRating}
-					className={`btn btn-rate${feedbackRating === 2 ? " selected" : ""}`}
+					className={`btn-rate${feedbackRating === 2 ? " selected" : ""}`}
 				>
 					2
 				</Button>
 				<Button
 					type="button"
 					onClick={handleRating}
-					className={`btn btn-rate${feedbackRating === 3 ? " selected" : ""}`}
+					className={`btn-rate${feedbackRating === 3 ? " selected" : ""}`}
 				>
 					3
 				</Button>
 				<Button
 					type="button"
 					onClick={handleRating}
-					className={`btn btn-rate${feedbackRating === 4 ? " selected" : ""}`}
+					className={`btn-rate${feedbackRating === 4 ? " selected" : ""}`}
 				>
 					4
 				</Button>
 				<Button
 					type="button"
 					onClick={handleRating}
-					className={`btn btn-rate${feedbackRating === 5 ? " selected" : ""}`}
+					className={`btn-rate${feedbackRating === 5 ? " selected" : ""}`}
 				>
 					5
 				</Button>
 				<Button
 					type="button"
 					onClick={handleRating}
-					className={`btn btn-rate${feedbackRating === 6 ? " selected" : ""}`}
+					className={`btn-rate${feedbackRating === 6 ? " selected" : ""}`}
 				>
 					6
 				</Button>
 				<Button
 					type="button"
 					onClick={handleRating}
-					className={`btn btn-rate${feedbackRating === 7 ? " selected" : ""}`}
+					className={`btn-rate${feedbackRating === 7 ? " selected" : ""}`}
 				>
 					7
 				</Button>
 				<Button
 					type="button"
 					onClick={handleRating}
-					className={`btn btn-rate${feedbackRating === 8 ? " selected" : ""}`}
+					className={`btn-rate${feedbackRating === 8 ? " selected" : ""}`}
 				>
 					8
 				</Button>
 				<Button
 					type="button"
 					onClick={handleRating}
-					className={`btn btn-rate${feedbackRating === 9 ? " selected" : ""}`}
+					className={`btn-rate${feedbackRating === 9 ? " selected" : ""}`}
 				>
 					9
 				</Button>
