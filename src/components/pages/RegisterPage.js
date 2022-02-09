@@ -18,9 +18,8 @@ export default function RegisterPage() {
 		setPassword(e.target.value)
 	}
 
-	const handleSubmit = ({password, login}) => {
-
-		axios.post('http://localhost:3001/register', {
+	const handleSubmit = async ({password, login}) => {
+		return await axios.post('http://localhost:3001/register', {
 			password,
 			login
 		}, {

@@ -12,7 +12,7 @@
 
 .auth-form {
 	width: 30em;
-	font-size: clamp(8px, 1.5vw, 1.7em);
+	font-size: clamp(8px, 1.5vw, 1.5em);
 	margin: 0 auto;
 	padding: 1em 0;
 	background: white;
@@ -23,7 +23,7 @@
 	.form-inputs {
 
 		input {
-			margin-bottom: 10px;
+			margin-bottom: 0.6em;
 			width: 90%;
 			height: 2em;
 			font-size: 1.2em;
@@ -33,6 +33,19 @@
 			border: none;
 			background: #eeeeee;
 			border: 1px solid #afafaf;
+		}
+
+		input + input {
+			margin-bottom: 0;
+		}
+
+		.error-message {
+			width: 90%;
+			line-height: 1.8em;
+			height: 1.9em;
+			font-size: 1em;
+			color: #d51a1a;
+			font-weight: 500;
 		}
 	}
 }

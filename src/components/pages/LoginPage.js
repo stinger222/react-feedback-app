@@ -6,8 +6,8 @@ import Form from "../Form"
 
 export default function LoginPage() {
 
-	const handleSubmit = ({login, password}) => {
-		axios.post('http://localhost:3001/login', {
+	const handleSubmit = async ({login, password}) => {
+		return await axios.post('http://localhost:3001/login', {
 			password,
 			login
 		}, {withCredentials: true	})
