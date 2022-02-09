@@ -1,38 +1,21 @@
 import axios from "axios"
 import Button from "../Button"
 import {useState} from 'react'
-
+import Form from "../Form"
 
 
 export default function LoginPage() {
 
-	const [login, setLogin] = useState('')
-	const [password, setPassword] = useState('')
-
-	const handleLogin = e => {
-		setLogin(e.target.value.trim())
-	}
-
-	const handlePassword = e => {
-		setPassword(e.target.value)
-	}
-
-	const handleSubmit = e => {
-		e.preventDefault()
-
+	const handleSubmit = ({login, password}) => {
 		axios.post('http://localhost:3001/login', {
 			password,
 			login
-		}, {
-			withCredentials: true
-		})
+		}, {withCredentials: true	})
 	}
 
 	return (
-		<form onSubmit={handleSubmit} className="auth-form register">
-			<input onChange={handleLogin} placeholder="login"/>
-			<input onChange={handlePassword} type="password" placeholder="password"/>
-			<Button type="submit">DICK</Button>
-		</form>
+		<div className="auth-form-wrapper">
+			<Form title="Login" handleSubmit={handleSubmit}/>
+		</div>
 	)
 }

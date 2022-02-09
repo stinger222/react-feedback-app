@@ -1,6 +1,7 @@
 import axios from "axios"
 import Button from "../Button"
 import {useState} from 'react'
+import Form from "../Form"
 
 
 
@@ -17,8 +18,7 @@ export default function RegisterPage() {
 		setPassword(e.target.value)
 	}
 
-	const handleSubmit = e => {
-		e.preventDefault()
+	const handleSubmit = ({password, login}) => {
 
 		axios.post('http://localhost:3001/register', {
 			password,
@@ -29,10 +29,8 @@ export default function RegisterPage() {
 	}
 
 	return (
-		<form onSubmit={handleSubmit} className="auth-form register">
-			<input onChange={handleLogin} placeholder="login"/>
-			<input onChange={handlePassword} type="password" placeholder="password"/>
-			<Button type="submit">DICK</Button>
-		</form>
+		<div className="auth-form-wrapper">
+			<Form title="Register" handleSubmit={handleSubmit}/>
+		</div>
 	)
 }
