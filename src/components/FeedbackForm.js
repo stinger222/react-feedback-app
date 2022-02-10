@@ -19,14 +19,14 @@ export default function FeedbackForm() {
 	}
 
 	const handleInput = (event) => {
-		let value = event.target.value.trim()
+		const value = event.target.value.trim()
 
 		if (value.length === 0) {
 			setSubmitDisabled(true)
 			setErrorMessage(null)
 		} else if (value !== "" && value.length < 5) {
 			setSubmitDisabled(true)
-			setErrorMessage("Review must be at least 5 characters!")
+			setErrorMessage("Review must be at least 5 characters long!")
 		} else {
 			setSubmitDisabled(false)
 			setErrorMessage(null)
@@ -35,11 +35,10 @@ export default function FeedbackForm() {
 		setFeedbackDesc(event.target.value)
 	}
 
-	let handleSubmit = (event) => {
+	const handleSubmit = (event) => {
 		event.preventDefault()
 		if (!feedbackRating || feedbackDesc.trim() === "") {
 			console.error("Feedback rating is not provided!!")
-			// setErrorMessage('Please, rate our services before sending feedback!')
 			setErrorMessage("Rating required!")
 			return
 		}

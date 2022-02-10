@@ -88,8 +88,8 @@ app.post("/register", async (req, res) => {
 	
 	const {login, password} = req.body
 
-	if (password.length < 7) {
-		errorResponse(400, 'Password must be at least 7 characters long', res)
+	if (password.length < 5) {
+		errorResponse(400, 'Password must be at least 5 characters long', res)
 		return
 	}
 

@@ -4,14 +4,14 @@ import FeedbackItem from "./FeedbackItem"
 import Loader from "./Loader"
 
 export default function FeedbackList() {
-	const { handleDelete, feedbackData } = useContext(FeedbackContext)
+	const { feedbackData } = useContext(FeedbackContext)
 
 	const noFeedback = !feedbackData || feedbackData.length === 0
 	const [averageRating, setAverageRating] = useState(0)
 
 	const calculateAverageRating = () => {
 		if (noFeedback) return 0
-		let average =
+		const average =
 			feedbackData.reduce((acc, cur) => acc + cur.rating, 0) /
 			feedbackData.length
 		return average.toFixed(1).replace(/[.,]0$/, "")

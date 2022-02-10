@@ -1,5 +1,4 @@
-import { FeedbackContext } from '../context/FeedbackContext';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button';
 import '../styles/forms.scss'
