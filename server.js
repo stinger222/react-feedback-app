@@ -4,16 +4,9 @@ const User = require('./src/models/User')
 const express = require('express')
 const config = require('config')
 const bcrypt = require('bcrypt')
+const cors = require('cors')
 
 const app = express()
-
-const allowCrossDomain = function(req,res,next) {
-  res.header('Access-Control-Allow-Origin', config.get('client-origin'));
-  res.header('Access-Control-Allow-Credentials', 'true');
-  res.header("Access-Control-Allow-Headers", "Content-Type")
-  res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
-  next();  
-}
 
 const successResponse = (code = 200, message, res) => {
 	res.statusCode = code
@@ -34,7 +27,12 @@ const errorResponse = (code = 400, message, res) => {
 
 app.use(cookieParser())
 app.use(express.json())
-app.use(allowCrossDomain)
+app.use(cors({
+	origin: config.get('client-origin'),
+	allowedHeaders: ['GET, POST, DELETE, PUT'],
+	credentials: true,
+	allowedHeaders: "Content-Type"
+}))
 
 // Getting user feedbacks
 app.get('/api/user/:user_id', (req, res) => {
@@ -48,6 +46,7 @@ app.get('/api/user/:user_id', (req, res) => {
 	}).catch(err => errorResponse(400, err.message, res))
 })
 
+// Edit feedback
 app.put('/api/feedback/:feedback_id', (req, res) => {
 	const {text, rating} = req.body
 	Feedbacks.update({
@@ -61,6 +60,7 @@ app.put('/api/feedback/:feedback_id', (req, res) => {
 		.catch(err => errorResponse(400, err.message, res))
 })
 
+// Post new feedback
 app.post('/api/feedback', (req, res) => {
 	const {text, rating} = req.body
 	Feedbacks.create({
@@ -71,7 +71,7 @@ app.post('/api/feedback', (req, res) => {
 		.catch(err => errorResponse(400, err.message, res))
 })
 
-
+// Delete feedback
 app.delete('/api/feedback/:feedback_id', (req, res) => {
 	Feedbacks.destroy({
 		where: {
@@ -81,8 +81,7 @@ app.delete('/api/feedback/:feedback_id', (req, res) => {
 		.catch(err => errorResponse(400, err.message, res))
 })
 
-// auth part
-
+// Register
 app.post("/register", async (req, res) => {
 	console.log('Register request: ', req.body)
 	
@@ -110,6 +109,7 @@ app.post("/register", async (req, res) => {
 	}
 })
 
+// Login
 app.post("/login", async (req, res) => {
 	const {login, password} = req.body
 
