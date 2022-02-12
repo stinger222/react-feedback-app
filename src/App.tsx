@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { BrowserRouter as Router, Route } from "react-router-dom"
 import FeedbackProvider from "./context/FeedbackContext"
 import AboutIconLink from "./components/AboutIconLink"
 import FeedbackForm from "./components/FeedbackForm"
@@ -13,27 +13,25 @@ export default function App() {
 		<FeedbackProvider>
 			<Router>
 				<Header />
-				<Routes>
-					<Route
-						exact
-						path="/"
-						element={
-							<>
-								<div className="container">
-									<FeedbackForm />
-									<FeedbackList />
-									<AboutIconLink />
-								</div>
-							</>
-						}
-					/>
+					<Route exact path="/">
+						<div className="container">
+							<FeedbackForm />
+							<FeedbackList />
+							<AboutIconLink />
+						</div>
+					</Route>
 
-					<Route exact path="/about" element={<AboutPage />} />
+					<Route exact path="/about">
+						<AboutPage />
+					</Route>
 
-					<Route exact path="/register" element={<RegisterPage />} />
+					<Route exact path="/register">
+						<RegisterPage />
+					</Route>
 
-					<Route exact path="/login" element={<LoginPage />} />
-				</Routes>
+					<Route exact path="/login">
+						<LoginPage />
+					</Route>
 			</Router>
 		</FeedbackProvider>
 	)
