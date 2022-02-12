@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom"
 
-export default function Header({ text }) {
+interface HeaderProps {
+	text: string
+}
+
+export default function Header({ text }: HeaderProps) {
 	return (
 		<>
 			<header>
