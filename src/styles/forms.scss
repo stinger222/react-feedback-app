@@ -3,16 +3,21 @@
 	height: 50vh;
 	display: flex;
 	align-items: center;
+} * {
+		transition: all 0.05s linear;
 }
 
-// @media screen and (max-width: 630px) {
-// 	.auth-form {
-// 		//  !important;
-// }
+
+
+@media screen and (max-width: 520px) {
+	.auth-form {
+	  font-size: clamp(8px, 2.5vw, 0.8em) !important;
+	}
+}
 
 .auth-form {
 	width: 30em;
-	font-size: clamp(8px, 0.9vw, 1.5em);
+	font-size: clamp(16px, 0.9vw, 1.5em);
 	margin: 0 auto;
 	padding: 1em 0;
 	background: white;
