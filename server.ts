@@ -5,6 +5,7 @@ const express = require('express')
 const config = require('config')
 const bcrypt = require('bcrypt')
 const cors = require('cors')
+export {}
 
 const app = express()
 
@@ -29,9 +30,7 @@ app.use(cookieParser())
 app.use(express.json())
 app.use(cors({
 	origin: config.get('client-origin'),
-	allowedHeaders: ['GET, POST, DELETE, PUT'],
-	credentials: true,
-	allowedHeaders: "Content-Type"
+	credentials: true
 }))
 
 // Getting user feedbacks
