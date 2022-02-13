@@ -3,7 +3,7 @@ import Card from "../Card"
 
 export default function AboutPage() {
 	return (
-		<Card className={'about'}>
+		<Card className='about'>
 			<h1>
 				About this project
 			</h1>

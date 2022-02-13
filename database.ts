@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize')
 const config = require('config')
-export {}
 
 const {database, user, password } = config.get('sql-config')
 
@@ -17,3 +16,4 @@ db.authenticate().then(() => {
 })
 
 module.exports = db
+export {}

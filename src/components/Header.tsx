@@ -1,9 +1,5 @@
 import { Link } from "react-router-dom"
-
-interface HeaderProps {
-	text: string
-}
-
+import { HeaderProps } from "../types"
 export default function Header({ text }: HeaderProps) {
 	return (
 		<>

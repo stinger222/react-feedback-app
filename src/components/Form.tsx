@@ -1,16 +1,7 @@
 import { useState } from 'react';
 import Button from './Button';
 import '../styles/forms.scss'
-
-interface FormProps {
-	title: string,
-	handleSubmit: ({login, password}: IhandleSubmit) => any
-}
-
-interface IhandleSubmit {
-	login: string,
-	password: string
-}
+import { FormProps } from '../types';
 
 export default function Form({title, handleSubmit}: FormProps) {
 	const [login, setLogin] = useState<string>('')

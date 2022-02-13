@@ -1,21 +1,6 @@
+import { createContext, useEffect, useState} from "react"
+import { IFeedbackData, IhandleUpdate, InowEditingItem, ProviderProps } from "../types"
 import axios from "axios"
-import React, { createContext, useEffect, useState, ReactChild, ReactNode} from "react"
-
-interface IFeedbackData {
-	id: number,
-	rating: number,
-	text: string,
-	user_id: number
-}
-
-interface InowEditingItem {
-	item: IFeedbackData | null,
-	editing: boolean
-}
-
-interface ProviderProps {
-	children: React.ReactChild | React.ReactNode
-}
 
 export const FeedbackContext = createContext(null)
 
@@ -62,11 +47,7 @@ export default function FeedbackProvider({ children }: ProviderProps) {
 		}).then(fetchData)
 	}
 
-	interface IhandleUpdate {
-		id: number,
-		rating: number,
-		text: string
-	}
+
 	const handleUpdate = ({id, rating, text}: IhandleUpdate): void => {
 		instance.put(`/feedback/${id}`, {
 			rating,

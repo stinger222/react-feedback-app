@@ -1,7 +1,4 @@
-interface CardProps {
-	children: React.ReactChild | React.ReactNode,
-	className: string
-}
+import { CardProps } from "../types";
 
 export default function Card({children, className}: CardProps) {
 	return (

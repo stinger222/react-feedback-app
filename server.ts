@@ -5,7 +5,6 @@ const express = require('express')
 const config = require('config')
 const bcrypt = require('bcrypt')
 const cors = require('cors')
-export {}
 
 const app = express()
 
@@ -129,3 +128,5 @@ app.post("/login", async (req, res) => {
 
 const port = config.get('server-port')
 app.listen(+port, () => console.log('App has been started on port', config.get('server-port')))
+
+export {}

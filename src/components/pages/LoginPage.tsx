@@ -1,9 +1,9 @@
-import axios from "axios"
+import { IhandleSubmit } from "../../types"
 import Form from "../Form"
+import axios from "axios"
 
 export default function LoginPage() {
-
-	const handleSubmit = async ({login, password}) => {
+	const handleSubmit = async ({login, password}: IhandleSubmit) => {
 		return await axios.post('http://localhost:3001/login', {
 			password,
 			login
