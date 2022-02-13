@@ -1,22 +1,23 @@
 const Sequelize = require('sequelize');
 const db = require('../../database')
 
-const Feedbacks = db.define('feedbacks', {
+const User = db.define('users', {
 	id: {
 		type: Sequelize.INTEGER,
 		primaryKey: true
 	},
-	user_id: {
-		type: Sequelize.INTEGER
-	},
-	text: {
+	login: {
 		type: Sequelize.STRING
 	},
-	rating: {
-		type: Sequelize.INTEGER
+	password_hash: {
+		type: Sequelize.STRING
+	},
+	created_at: {
+		type: Sequelize.DATE
 	}
 },{
 	timestamps: false
 })
 
-module.exports = Feedbacks
+module.exports = User
+export {}

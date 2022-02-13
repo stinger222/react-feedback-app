@@ -16,3 +16,4 @@ db.authenticate().then(() => {
 })
 
 module.exports = db
+export {}

@@ -1,12 +1,13 @@
+import { createContext, useEffect, useState} from "react"
+import { IFeedbackData, IhandleUpdate, InowEditingItem, ProviderProps } from "../types"
 import axios from "axios"
-import { createContext, useEffect, useState } from "react"
 
-export const FeedbackContext = createContext()
+export const FeedbackContext = createContext(null)
 
-export default function FeedbackProvider({ children }) {
-	const [feedbackData, setFeedbackData] = useState(null)
-	const [errorMessage, setErrorMessage] = useState(null)
-	const [nowEditingItem, setNowEditingItem] = useState({
+export default function FeedbackProvider({ children }: ProviderProps) {
+	const [feedbacksData, setFeedbacksData] = useState<[IFeedbackData]>(null)
+	const [errorMessage, setErrorMessage] = useState<string>(null)
+	const [nowEditingItem, setNowEditingItem] = useState<InowEditingItem>({
 		item: null,
 		editing: false
 	})
@@ -17,8 +18,10 @@ export default function FeedbackProvider({ children }) {
 	});
 	
 	const fetchData = () => {
+		console.log(errorMessage);
+		
 		instance.get('user/1').then(response => {
-			setFeedbackData(response.data.reverse())
+			setFeedbacksData(response.data.reverse())
 		}).catch(e => {
 			console.error(e);
 			setErrorMessage(`Data getting is failed!`)
@@ -26,7 +29,7 @@ export default function FeedbackProvider({ children }) {
 
 	}
 
-	const handleDelete =  (id) => {
+	const handleDelete = (id:number): void => {
 		if (!window.confirm("Are you sure you want to delete this feedback?")) return
 		instance.delete(`/feedback/${id}`).catch(e => {
 			setErrorMessage('Deleting failed!')
@@ -34,7 +37,7 @@ export default function FeedbackProvider({ children }) {
 		}).then(fetchData)
 	}
 
-	const handleAppend = (rating, text) => {
+	const handleAppend = (rating: number, text: string): void => {
 		instance.post(`/feedback`, {
 			rating,
 			text,
@@ -44,7 +47,8 @@ export default function FeedbackProvider({ children }) {
 		}).then(fetchData)
 	}
 
-	const handleUpdate = ({id, rating, text}) => {
+
+	const handleUpdate = ({id, rating, text}: IhandleUpdate): void => {
 		instance.put(`/feedback/${id}`, {
 			rating,
 			text,
@@ -59,8 +63,8 @@ export default function FeedbackProvider({ children }) {
 	return (
 		<FeedbackContext.Provider
 			value={{
-				feedbackData,
-				setFeedbackData,
+				feedbacksData,
+				setFeedbacksData,
 				handleAppend,
 				handleDelete,
 				nowEditingItem,

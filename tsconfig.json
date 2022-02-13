@@ -1,6 +1,8 @@
 { 
   "compilerOptions" :  { 
     "module" :  "umd", 
-    "jsx" :  "react-jsx"
+    "jsx" :  "react-jsx",
+		"moduleResolution": "node",
+		"esModuleInterop": true
   } 
 }

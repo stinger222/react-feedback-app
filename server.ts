@@ -29,9 +29,7 @@ app.use(cookieParser())
 app.use(express.json())
 app.use(cors({
 	origin: config.get('client-origin'),
-	allowedHeaders: ['GET, POST, DELETE, PUT'],
-	credentials: true,
-	allowedHeaders: "Content-Type"
+	credentials: true
 }))
 
 // Getting user feedbacks
@@ -130,3 +128,5 @@ app.post("/login", async (req, res) => {
 
 const port = config.get('server-port')
 app.listen(+port, () => console.log('App has been started on port', config.get('server-port')))
+
+export {}

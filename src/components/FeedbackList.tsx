@@ -4,17 +4,17 @@ import FeedbackItem from "./FeedbackItem"
 import Loader from "./Loader"
 
 export default function FeedbackList() {
-	const { feedbackData } = useContext(FeedbackContext)
+	const { feedbacksData } = useContext(FeedbackContext)
 
-	const noFeedback = !feedbackData || feedbackData.length === 0
+	const noFeedback = !feedbacksData || feedbacksData.length === 0
 	const [averageRating, setAverageRating] = useState(0)
 
-	const calculateAverageRating = () => {
+	const calculateAverageRating = (): number => {
 		if (noFeedback) return 0
 		const average =
-			feedbackData.reduce((acc, cur) => acc + cur.rating, 0) /
-			feedbackData.length
-		return average.toFixed(1).replace(/[.,]0$/, "")
+			feedbacksData.reduce((acc, cur) => acc + cur.rating, 0) /
+			feedbacksData.length
+		return +average.toFixed(1).replace(/[.,]0$/, "")
 	}
 
 	useEffect(() => {
@@ -27,8 +27,8 @@ export default function FeedbackList() {
 		<div className="feedback-list-wrapper">
 			<div className="stats">
 				<span>
-					{feedbackData.length}{" "}
-					{feedbackData.length === 1 ? "Review" : "Reviews"}
+					{feedbacksData.length}{" "}
+					{feedbacksData.length === 1 ? "Review" : "Reviews"}
 				</span>
 				<span>Average rating: {averageRating || 0}</span>
 			</div>
@@ -38,7 +38,7 @@ export default function FeedbackList() {
 				)}
 
 				{!noFeedback &&
-					feedbackData.map((item) => (
+					feedbacksData.map((item) => (
 						<FeedbackItem
 							item={item}
 							key={item.id}

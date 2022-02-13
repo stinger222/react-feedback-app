@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 import Button from './Button';
 import '../styles/forms.scss'
+import { FormProps } from '../types';
 
-export default function Form({title, handleSubmit}) {
-	const [login, setLogin] = useState('')
-	const [password, setPassword] = useState('')
+export default function Form({title, handleSubmit}: FormProps) {
+	const [login, setLogin] = useState<string>('')
+	const [password, setPassword] = useState<string>('')
 
 	const [ errorMessage, setErrorMessage ] = useState('')
 
@@ -15,11 +15,11 @@ export default function Form({title, handleSubmit}) {
 		console.log(login);
 	}
 
-	const handlePassword = e => {
+	const handlePassword = (e): void => {
 		setPassword(e.target.value)
 	}
 
-	const onSubmit = async e => {
+	const onSubmit = async (e) => {
 		e.preventDefault()
 
 		if (login.split(' ').length > 1) {
@@ -27,13 +27,14 @@ export default function Form({title, handleSubmit}) {
 			return
 		}
 		
+	
 		handleSubmit({login, password})
 			.then()
 			.catch(err => {
 				setErrorMessage(err.response.data.message)
 			})
-
 	}
+	
 	return (
 		<form onSubmit={onSubmit} className="auth-form"
 		>
@@ -51,9 +52,3 @@ export default function Form({title, handleSubmit}) {
 		</form>	
 	)
 }
-
-Form.propTypes = {
-	title: PropTypes.string.isRequired,
-	handleSubmit: PropTypes.func.isRequired
-}
-

@@ -1,9 +1,10 @@
+import { IhandleSubmit } from "../../types"
 import axios from "axios"
 import Form from "../Form"
 
 export default function RegisterPage() {
 	
-	const handleSubmit = async ({password, login}) => {
+	const handleSubmit = async ({password, login}: IhandleSubmit) => {
 		return await axios.post('http://localhost:3001/register', {
 			password,
 			login
