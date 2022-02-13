@@ -4,9 +4,9 @@ import Button from "./Button"
 import "../styles/index.scss"
 
 export default function FeedbackForm() {
-	const [feedbackRating, setFeedbackRating] = useState(null)
-	const [feedbackDesc, setFeedbackDesc] = useState("")
-	const [submitDisabled, setSubmitDisabled] = useState(true)
+	const [feedbackRating, setFeedbackRating] = useState<number | null>(null)
+	const [feedbackDesc, setFeedbackDesc] = useState<string>("")
+	const [submitDisabled, setSubmitDisabled] = useState<boolean>(true)
 	
 	const {
 		handleAppend, nowEditingItem, 
@@ -14,11 +14,11 @@ export default function FeedbackForm() {
 		setErrorMessage, handleUpdate 
 	} = useContext(FeedbackContext)
 
-	const handleRating = (event) => {
+	const handleRating = (event):void => {
 		setFeedbackRating(parseInt(event.target.innerText))
 	}
 
-	const handleInput = (event) => {
+	const handleInput = (event):void => {
 		const value = event.target.value.trim()
 
 		if (value.length === 0) {
@@ -35,7 +35,7 @@ export default function FeedbackForm() {
 		setFeedbackDesc(event.target.value)
 	}
 
-	const handleSubmit = (event) => {
+	const handleSubmit = (event):void => {
 		event.preventDefault()
 		if (!feedbackRating || feedbackDesc.trim() === "") {
 			console.error("Feedback rating is not provided!!")

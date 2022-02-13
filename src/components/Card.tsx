@@ -1,6 +1,5 @@
-
 interface CardProps {
-	children: any,
+	children: React.ReactChild | React.ReactNode,
 	className: string
 }
 
