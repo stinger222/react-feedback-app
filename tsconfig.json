@@ -3,5 +3,6 @@
     "module" :  "umd", 
     "jsx" :  "react-jsx",
 		"moduleResolution": "node",
+		"esModuleInterop": true
   } 
 }

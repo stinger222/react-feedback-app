@@ -1,5 +1,5 @@
 import axios from "axios"
-import { createContext, useEffect, useState, ReactChild, ReactNode} from "react"
+import React, { createContext, useEffect, useState, ReactChild, ReactNode} from "react"
 
 interface IFeedbackData {
 	id: number,
@@ -14,7 +14,7 @@ interface InowEditingItem {
 }
 
 interface ProviderProps {
-	children: ReactChild | ReactNode
+	children: React.ReactChild | React.ReactNode
 }
 
 export const FeedbackContext = createContext(null)

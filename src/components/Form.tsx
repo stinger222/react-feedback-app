@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import * as PropTypes from 'prop-types';
 import Button from './Button';
 import '../styles/forms.scss'
 

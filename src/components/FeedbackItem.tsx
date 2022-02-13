@@ -7,7 +7,7 @@ export default function FeedbackItem({item}) {
 
 	const { handleDelete, setNowEditingItem, nowEditingItem, setErrorMessage} = useContext(FeedbackContext);
 
-	const handleEdit = () => {
+	const handleEdit = (): void => {
 		if (!nowEditingItem.editing) {
 			setNowEditingItem({item, editing: true})
 		} else if (nowEditingItem.editing && nowEditingItem.item.id === item.id) {
