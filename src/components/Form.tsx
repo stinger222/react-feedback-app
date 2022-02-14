@@ -1,21 +1,21 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { FormProps } from '../types';
 import Button from './Button';
 import '../styles/forms.scss'
-import { FormProps } from '../types';
+import { Redirect } from 'react-router-dom';
 
 export default function Form({title, handleSubmit}: FormProps) {
 	const [login, setLogin] = useState<string>('')
 	const [password, setPassword] = useState<string>('')
+	const [ errorMessage, setErrorMessage ] = useState<string>('')
+	const [isLogged, setIsLogged] = useState<boolean>(false)
 
-	const [ errorMessage, setErrorMessage ] = useState('')
-
-	const handleLogin = e => {
+	const handleLogin = (e):void => {
 		setErrorMessage('')
 		setLogin(e.target.value.trim())
-		console.log(login);
 	}
 
-	const handlePassword = (e): void => {
+	const handlePassword = (e):void => {
 		setPassword(e.target.value)
 	}
 
@@ -26,18 +26,20 @@ export default function Form({title, handleSubmit}: FormProps) {
 			setErrorMessage('Login shouldn\'t contain spaces!')
 			return
 		}
-		
-	
+
 		handleSubmit({login, password})
-			.then()
+			.then(() => {
+				setErrorMessage('')
+				setIsLogged(true)
+			})
 			.catch(err => {
 				setErrorMessage(err.response.data.message)
 			})
 	}
-	
+
+	if (isLogged) return <Redirect to="/"/>
 	return (
-		<form onSubmit={onSubmit} className="auth-form"
-		>
+		<form onSubmit={onSubmit} className="auth-form">
 			<div className="form-title">
 				<h1>{title}</h1>
 			</div>
