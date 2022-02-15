@@ -5,6 +5,10 @@ export default function Header({ text }: HeaderProps) {
 		<>
 			<header>
 				<Link to='/'>{text}</Link>
+				<div className="header-auth">
+					<Link to='/login'>Sign in</Link>
+					<Link to='/register'>Sign up</Link>
+				</div>
 			</header>
 		</>
 	)
