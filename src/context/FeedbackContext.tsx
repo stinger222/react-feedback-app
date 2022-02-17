@@ -1,12 +1,16 @@
-import { createContext, useEffect, useState} from "react"
 import { IFeedbackData, IhandleUpdate, InowEditingItem, ProviderProps } from "../types"
+import { createContext, useEffect, useState} from "react"
+import cookies from 'js-cookie';
 import axios from "axios"
 
 export const FeedbackContext = createContext(null)
 
 export default function FeedbackProvider({ children }: ProviderProps) {
+
+
 	const [feedbacksData, setFeedbacksData] = useState<[IFeedbackData]>(null)
 	const [errorMessage, setErrorMessage] = useState<string>(null)
+	const [authData, setAuthData] = useState(null) // todo: create interface
 	const [nowEditingItem, setNowEditingItem] = useState<InowEditingItem>({
 		item: null,
 		editing: false
@@ -58,7 +62,16 @@ export default function FeedbackProvider({ children }: ProviderProps) {
 		}).then(fetchData)
 	}
 
-	useEffect(fetchData, [])
+	const getAuthData = () => {
+		const data = cookies.get('auth-data')
+		if (data) setAuthData(JSON.parse(data))
+	}
+
+	// init
+	useEffect(() => {
+		fetchData()
+		getAuthData()
+	}, [])
 
 	return (
 		<FeedbackContext.Provider
@@ -71,7 +84,9 @@ export default function FeedbackProvider({ children }: ProviderProps) {
 				setNowEditingItem,
 				errorMessage,
 				setErrorMessage,
-				handleUpdate
+				handleUpdate,
+				getAuthData,
+				authData
 			}}
 		>
 			{children}
