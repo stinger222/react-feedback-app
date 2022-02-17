@@ -1,14 +1,16 @@
-import { useState, useRef } from 'react';
+import { FeedbackContext } from '../context/FeedbackContext';
+import { useContext, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { FormProps } from '../types';
 import Button from './Button';
 import '../styles/forms.scss'
-import { Redirect } from 'react-router-dom';
 
 export default function Form({title, handleSubmit}: FormProps) {
 	const [login, setLogin] = useState<string>('')
 	const [password, setPassword] = useState<string>('')
 	const [ errorMessage, setErrorMessage ] = useState<string>('')
 	const [isLogged, setIsLogged] = useState<boolean>(false)
+	const {getAuthData} = useContext(FeedbackContext)
 
 	const handleLogin = (e):void => {
 		setErrorMessage('')
@@ -31,6 +33,7 @@ export default function Form({title, handleSubmit}: FormProps) {
 			.then(() => {
 				setErrorMessage('')
 				setIsLogged(true)
+				getAuthData()
 			})
 			.catch(err => {
 				setErrorMessage(err.response.data.message)
