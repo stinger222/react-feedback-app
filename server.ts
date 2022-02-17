@@ -118,7 +118,12 @@ app.post("/login", async (req, res) => {
 	if (user) {
 		const match = await bcrypt.compare(password, user.password_hash)
 		if (match) {
-			res.cookie('authorized', 'true', {maxAge: 600000})
+			const authData = {
+				user_id: user.id,
+				login
+			}
+
+			res.cookie('auth-data', JSON.stringify(authData), {maxAge: 60000000})
 			successResponse(200, 'Logged in', res)
 		} else {
 			errorResponse(400, 'Invalid password', res)
